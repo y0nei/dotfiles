@@ -1,0 +1,43 @@
+#!/bin/sh
+
+alias nv="nvim"
+alias ports="netstat -tulanp"  # List all TCP/UDP ports
+
+# Verbosity & "Safty nets" for file operations
+alias cp="cp -iv"
+alias mv="mv -iv"
+alias rm="rm -vI --preserve-root"
+
+# Colorize commands
+alias grep="grep --color=auto"
+alias egrep="egrep --color=auto"
+alias fgrep="fgrep --color=auto"
+alias diff="diff --color=auto"
+alias ip="ip --color=auto"
+
+# Readable output
+alias df="df -h"                 # Human-readable sizes
+alias mount="mount | column -t"  # Human-readable format
+alias free="free -mt"            # Show total & sizes in MB
+
+# Memmory usage
+alias dirusage="du -ch | tail -1"  # Show disk usage in current dir
+# Partition usage without temporary memory values
+alias partusage="df -T --exclude-type=tmpfs --exclude-type=devtmpfs"
+
+# "ls" -> "exa"
+alias ls="exa -la --color=always --group-directories-first"  # Preferred
+alias la="exa -a --color=always --group-directories-first"   # All files & dirs
+alias ll="exa -l --color=always --group-directories-first"   # Long format
+alias lt="exa -aT --color=always --group-directories-first"  # Tree listing
+alias l.="exa -a | egrep '^\.'"                              # Just dotfiles
+
+# yt-dlp
+alias ytv-best="yt-dlp -f bestvideo+bestaudio "
+alias yta-best="yt-dlp --extract-audio --audio-format best "
+alias yta="yt-dlp --extract-audio --audio-format "  # Audio extraction shortcut
+
+# More readable Git output
+alias gl="git log --oneline --graph --decorate"  # Pretty history graph
+alias gd="git diff | bat"
+alias gds="git diff --staged | bat"

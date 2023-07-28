@@ -25,6 +25,9 @@ export TERMINAL="alacritty"
 export BROWSER="librewolf"
 export EDITOR="nvim"
 
+# Load aliases
+[ -f "$HOME/.config/.aliasrc" ] && source "$HOME/.config/.aliasrc"
+
 # Autostart WM upon tty login
 if [ "$(tty)" = "/dev/tty1" ]; then
     pgrep Hyprland || Hyprland
