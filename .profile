@@ -25,6 +25,11 @@ export TERMINAL="alacritty"
 export BROWSER="librewolf"
 export EDITOR="nvim"
 
+# Add ~/.local/bin to PATH
+if [ -d "$HOME/.local/bin" ]; then
+    PATH="$HOME/.local/bin:$PATH"
+fi
+
 # Load aliases
 [ -f "$HOME/.config/.aliasrc" ] && source "$HOME/.config/.aliasrc"
 
