@@ -6,7 +6,7 @@ alias ports="netstat -tulanp"  # List all TCP/UDP ports
 # Verbosity & "Safty nets" for file operations
 alias cp="cp -iv"
 alias mv="mv -iv"
-alias rm="rm -vI --preserve-root"
+alias rm="rm -iv --preserve-root"
 
 # Colorize commands
 alias grep="grep --color=auto"
