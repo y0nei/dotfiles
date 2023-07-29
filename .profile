@@ -2,11 +2,12 @@
 
 # ! This file is only sourced when bash is started in login mode.
 # Why the exports here?
-# * I'm quirky and i keep Bash as my default shell, but use Zsh when inside
-#   a desktop environment for terminal emulators, so no .bashrc needed :3c
+# * I'm quirky and i just use Bash as my login shell. Zsh is used as an
+#   interactive shell. Aliases and PS1 are also set here, but just for
+#   convenience if i will ever need to use Bash in TTY
 
-# Default PS1, example: "username@hostname ~/ $"
-export PS1="\[\e[93;1m\]\u\[\e[91m\]@\[\e[96m\]\h \[\e[0;2;3m\]\w \[\e[0m\]\$ "
+# Default PS1 for tty, example: "username@hostname ~/ $"
+PS1="\[\e[93;1m\]\u\[\e[91m\]@\[\e[96m\]\h \[\e[0;2;3m\]\w \[\e[0m\]\$ "
 
 # XDG exports
 export XDG_DATA_HOME=${XDG_DATA_HOME:="$HOME/.local/share"}
