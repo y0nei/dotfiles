@@ -1,0 +1,25 @@
+add_newline = false
+
+[line_break]
+disabled = true
+
+[username]
+style_user = "bold yellow"
+style_root = "bold red"
+format = "[\\[](purple)[$user]($style)"
+show_always = true
+
+[hostname]
+ssh_only = false
+format = "[@](bold red)[$hostname](bold blue)[\\]](purple) [$ssh_symbol](bold blue)"
+
+[character]
+format = "$symbol"
+success_symbol = "[❯](bold green) "
+error_symbol = "[✗](bold red) "
+
+[directory]
+format = "[$path]($style)[$read_only]($read_only_style) "
+
+[git_branch]
+symbol = " "
