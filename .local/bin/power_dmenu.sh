@@ -1,5 +1,9 @@
 #!/bin/bash
 
+# 'loginctl' command requires elogind to be installed.
+# The 'bemenu' command can be supplemented with rofi, wofi or any dmenu
+# compatible application launcher.
+
 dmenu_opts="-c -W 0.33 -B 2"  # Default styling options
 
 function powermenu {
@@ -11,7 +15,7 @@ function powermenu {
 	    bemenu $dmenu_opts -l 2 -p "Are you sure?"
         )
         if [[ $confirm == "Yes, $selected" ]]; then
-            shutdown -h now
+            loginctl poweroff
         else
             return
         fi
@@ -21,7 +25,7 @@ function powermenu {
 	    bemenu $dmenu_opts -l 2 -p "Are you sure?"
         )
         if [[ $confirm == "Yes, $selected" ]]; then
-            reboot
+            loginctl reboot
         else
             return
         fi
@@ -31,9 +35,9 @@ function powermenu {
 	    bemenu $dmenu_opts -l 2 -p "Chose sleep method"
         )
         if [[ $confirm == "Hibernate" ]]; then
-            ZZZ
+            loginctl hibernate
         elif [[ $confirm == "Suspend" ]]; then
-            zzz
+            loginctl suspend
         else
             return
         fi
