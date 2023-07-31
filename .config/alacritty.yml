@@ -1,0 +1,265 @@
+env:
+  SHELL: "/bin/zsh"
+
+window:
+  padding:
+    x: 6
+    y: 6
+
+  decorations: none
+  opacity: 0.9
+
+scrolling:
+  history: 5000
+
+dynamic_title: true
+
+font:
+  normal:
+    family: "FiraCode Nerd Font"
+    style: Regular
+
+  bold:
+    family: "FiraCode Nerd Font"
+    style: Bold
+
+  italic:
+    family: "FiraCode Nerd Font"
+    style: Italic
+
+  bold_italic:
+    family: "FiraCode Nerd Font"
+    style: Bold Italic
+
+  size: 12.0
+
+# === Color Schemes ===========================================================
+
+schemes:
+  OneDark_warm: &OneDark_warm
+    # Based on navarasu/onedark.nvim warm colors, minor changes to keep the
+    # theme easy on the eyes and nice to work with.
+    primary:
+      background: "#242628"
+      foreground: "#c8ccd4"
+
+    normal:
+      black:   "#191a1c"
+      red:     "#e16d77"
+      green:   "#99bc80"
+      yellow:  "#dfbe81"
+      blue:    "#68aee8"
+      magenta: "#c678dd" 
+      cyan:    "#5fafb9"
+      white:   "#8b8d91"
+
+    bright:
+      black:   "#404247"
+      red:     "#e16d77"
+      green:   "#99bc80"
+      yellow:  "#dfbe81"
+      blue:    "#68aee8"
+      magenta: "#c678dd"
+      cyan:    "#5fafb9"
+      white:   "#c8ccd4"
+
+  OneDark: &OneDark  # Base16 OneDark 256
+    primary:
+      background: "#282c34"
+      foreground: "#abb2bf"
+
+    cursor:
+      text:   "#282c34"
+      cursor: "#abb2bf"
+
+    normal:
+      black:   "#282c34"
+      red:     "#e06c75"
+      green:   "#98c379"
+      yellow:  "#e5c07b"
+      blue:    "#61afef"
+      magenta: "#c678dd"
+      cyan:    "#56b6c2"
+      white:   "#abb2bf"
+
+    bright:
+      black:   "#545862"
+      red:     "#e06c75"
+      green:   "#98c379"
+      yellow:  "#e5c07b"
+      blue:    "#61afef"
+      magenta: "#c678dd"
+      cyan:    "#56b6c2"
+      white:   "#c8ccd4"
+
+    indexed_colors:
+      - { index: 16, color: "#d19a66" }
+      - { index: 17, color: "#be5046" }
+      - { index: 18, color: "#353b45" }
+      - { index: 19, color: "#3e4451" }
+      - { index: 20, color: "#565c64" }
+      - { index: 21, color: "#b6bdca" }
+
+  DoomOne: &DoomOne
+    # src: "github.com/alacritty/alacritty-theme"
+    primary:
+      background: "#282c34"
+      foreground: "#bbc2cf"
+
+    normal:
+      black:   "#282c34"
+      red:     "#ff6c6b"
+      green:   "#98be65"
+      yellow:  "#ecbe7b"
+      blue:    "#51afef"
+      magenta: "#c678dd"
+      cyan:    "#46d9ff"
+      white:   "#bbc2cf"
+        
+  GitHub_dark: &GitHub_dark
+    # src: "github.com/alacritty/alacritty-theme"
+    primary:
+      background: "#24292e"
+      foreground: "#d1d5da"
+
+    normal:
+      black:   "#586069"
+      red:     "#ea4a5a"
+      green:   "#34d058"
+      yellow:  "#ffea7f"
+      blue:    "#2188ff"
+      magenta: "#b392f0"
+      cyan:    "#39c5cf"
+      white:   "#d1d5da"
+
+    bright:
+      black:   "#959da5"
+      red:     "#f97583"
+      green:   "#85e89d"
+      yellow:  "#ffea7f"
+      blue:    "#79b8ff"
+      magenta: "#b392f0"
+      cyan:    "#56d4dd"
+      white:   "#fafbfc"
+
+    indexed_colors:
+      - { index: 16, color: "#d18616" }
+      - { index: 17, color: "#f97583" }
+
+  Eighties: &Eighties
+    # A Base16 theme by Chris Kempson
+    primary:
+      background: "#2d2d2d"
+      foreground: "#d3d0c8"
+
+    normal:
+      black:   "#2d2d2d"
+      red:     "#f2777a"
+      green:   "#99cc99"
+      yellow:  "#ffcc66"
+      blue:    "#6699cc"
+      magenta: "#cc99cc"
+      cyan:    "#66cccc"
+      white:   "#d3d0c8"
+
+    bright:
+      black:   "#747369"
+      red:     "#f2777a"
+      green:   "#99cc99"
+      yellow:  "#ffcc66"
+      blue:    "#6699cc"
+      magenta: "#cc99cc"
+      cyan:    "#66cccc"
+      white:   "#f2f0ec"
+
+  Wombat: &Wombat
+    # src: "github.com/alacritty/alacritty-theme"
+    primary:
+      background: "#1f1f1f"
+      foreground: "#e5e1d8"
+
+    normal:
+      black:   "#000000"
+      red:     "#f7786d"
+      green:   "#bde97c"
+      yellow:  "#efdfac"
+      blue:    "#6ebaf8"
+      magenta: "#ef88ff"
+      cyan:    "#90fdf8"
+      white:   "#e5e1d8"
+
+    bright:
+      black:   "#b4b4b4"
+      red:     "#f99f92"
+      green:   "#e3f7a1"
+      yellow:  "#f2e9bf"
+      blue:    "#b3d2ff"
+      magenta: "#e5bdff"
+      cyan:    "#c2fefa"
+      white:   "#ffffff"
+
+  Taerminal: &Taerminal
+    # src: "github.com/alacritty/alacritty-theme"
+    primary:
+      background: "#26282a"
+      foreground: "#f0f0f0"
+    cursor:
+      background: "#f0f0f0"
+      foreground: "#26282a"
+
+    normal:
+      black:   "#26282a"
+      red:     "#ff8878"
+      green:   "#b4fb73"
+      yellow:  "#fffcb7"
+      blue:    "#8bbce5"
+      magenta: "#ffb2fe"
+      cyan:    "#a2e1f8"
+      white:   "#f1f1f1"
+
+    bright:
+      black:   "#6f6f6f"
+      red:     "#fe978b"
+      green:   "#d6fcba"
+      yellow:  "#fffed5"
+      blue:    "#c2e3ff"
+      magenta: "#ffc6ff"
+      cyan:    "#c0e9f8"
+      white:   "#ffffff"
+  
+  Snazzy: &Snazzy
+    # src: "github.com/alacritty/alacritty-theme"
+    primary:
+      background: "#282a36"
+      foreground: "#eff0eb"
+
+    normal:
+      black:   "#282a36"
+      red:     "#ff5c57"
+      green:   "#5af78e"
+      yellow:  "#f3f99d"
+      blue:    "#57c7ff"
+      magenta: "#ff6ac1"
+      cyan:    "#9aedfe"
+      white:   "#f1f1f0"
+
+    bright:
+      black:   "#686868"
+      red:     "#ff5c57"
+      green:   "#5af78e"
+      yellow:  "#f3f99d"
+      blue:    "#57c7ff"
+      magenta: "#ff6ac1"
+      cyan:    "#9aedfe"
+      white:   "#f1f1f0"
+
+# - Choose a color scheme from those in the above list ------------------------
+# Available options (Uncomment ONE):
+#colors: *OneDark
+colors: *OneDark_warm
+#colors: *DoomOne
+#colors: *GitHub_dark
+#colors: *Eighties
+#colors: *Wombat
+#colors: *Taerminal
+#colors: *Snazzy
