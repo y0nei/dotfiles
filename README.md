@@ -9,6 +9,7 @@ systemd — the default init system for distributions like Debian or Arch Linux.
 - [Hyprland config](.config/hypr/) <small>([xbps-src template](https://github.com/Makrennel/hyprland-void))</small>
 - Shell configs
 	- [Zsh](.zshrc) / [Starship](.config/starship.toml)
+- [Neovim config](.config/nvim/)
 - [Alacritty config](.config/alacritty.yml)  
 *... and more*
 
