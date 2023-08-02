@@ -1,3 +1,4 @@
+local builtin = require("telescope.builtin")
 local keymap = vim.keymap.set
 local opts = { noremap = true, silent = true }
 
@@ -23,6 +24,11 @@ keymap("n", "<C-k>", "<C-w>k", opts)
 
 -- Clear highlights
 keymap("n", "<Esc>", ":noh<CR>", opts)
+
+-- Telescope functions
+keymap("n", "<leader>ff", builtin.find_files, opts)
+keymap("n", "<leader>fg", builtin.live_grep, opts)
+keymap("n", "<leader>ss", builtin.spell_suggest, opts)
 
 -- Visual mode -----------------------------------------------------------------
 
