@@ -3,7 +3,6 @@ local keymap = vim.keymap.set
 local opts = { noremap = true, silent = true }
 
 -- Map leader as space
-keymap("", "<Space>", "<Nop>", opts)
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 

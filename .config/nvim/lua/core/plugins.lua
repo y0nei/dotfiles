@@ -11,7 +11,7 @@ lazy.setup({
         init = function()
             vim.o.timeout = true
         end,
-        opts = { --[[ TODO ]] }
+        opts = {}
     },
     { -- Onedark colorscheme
         "navarasu/onedark.nvim",
@@ -46,10 +46,7 @@ lazy.setup({
                     { filetype = "NvimTree" }
                 }
             }
-        },
-        config = function(_, opts)
-            require("bufferline").setup(opts)
-        end
+        }
     },
     { -- Telescope file search
         "nvim-telescope/telescope.nvim", branch = "0.1.x",
@@ -87,10 +84,7 @@ lazy.setup({
                 changedelete = { text = "~" },
                 untracked    = { text = "┆", hl = "LineNr" }
             }
-        },
-        config = function(_, opts)
-            require("gitsigns").setup(opts)
-        end
+        }
     },
     { -- File browser
         "nvim-tree/nvim-tree.lua",
