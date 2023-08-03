@@ -40,5 +40,18 @@ lazy.setup({
             "nvim-lua/plenary.nvim",
             "nvim-tree/nvim-web-devicons"
         }
-    }
+    },
+    { -- Improved syntax highlighting
+        "nvim-treesitter/nvim-treesitter",
+        event = { "BufRead", "BufNewFile", "InsertEnter" },
+        -- Additional cmd's to lazy-load the plugin with if no events trigger
+        cmd = { "TSInstall", "TSBufEnable" },
+        build = ":TSUpdate",
+        opts = function()
+            return require("plugins.treesitter")
+        end,
+        config = function(_, opts)
+            require("nvim-treesitter.configs").setup(opts)
+        end
+     }
 })
