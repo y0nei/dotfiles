@@ -53,5 +53,22 @@ lazy.setup({
         config = function(_, opts)
             require("nvim-treesitter.configs").setup(opts)
         end
-     }
+    },
+    { -- Gitsigns
+        "lewis6991/gitsigns.nvim",
+        event = { "BufRead", "BufNewFile" },
+        opts = {
+            signs = {
+                add          = { text = "▎" },
+                change       = { text = "▎" },
+                delete       = { text = "" },
+                topdelete    = { text = "" },
+                changedelete = { text = "~" },
+                untracked    = { text = "┆" }
+            }
+        },
+        config = function(_, opts)
+            require("gitsigns").setup(opts)
+        end
+    }
 })

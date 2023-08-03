@@ -30,6 +30,18 @@ keymap("n", "<leader>ff", builtin.find_files, opts)
 keymap("n", "<leader>fg", builtin.live_grep, opts)
 keymap("n", "<leader>ss", builtin.spell_suggest, opts)
 
+-- Gitsigns
+keymap("n", "]h", ":Gitsigns next_hunk<CR>", opts)
+keymap("n", "[h", ":Gitsigns prev_hunk<CR>", opts)
+keymap("n", "<leader>ghp", ":Gitsigns preview_hunk<CR>", opts)
+keymap("n", "<leader>ghb", ":Gitsigns blame_line<CR>", opts)
+keymap({ "n", "v" }, "<leader>ghs", ":Gitsigns stage_hunk<CR>", opts)
+keymap({ "n", "v" }, "<leader>ghr", ":Gitsigns reset_hunk<CR>", opts)
+keymap("n", "<leader>ghu", ":Gitsigns undo_stage_hunk<CR>", opts)
+keymap("n", "<leader>ghS", ":Gitsigns stage_buffer<CR>", opts)
+keymap("n", "<leader>ghR", ":Gitsigns reset_buffer<CR>", opts)
+keymap({ "o", "x" }, "<leader>gh", ":<C-u>Gitsigns select_hunk<CR>", opts)
+
 -- Visual mode -----------------------------------------------------------------
 
 -- Don't copy replaced text
