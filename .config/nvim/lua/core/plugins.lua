@@ -113,5 +113,15 @@ lazy.setup({
         "windwp/nvim-autopairs",
         event = "InsertEnter",
         opts = {}
+    },
+    { -- Highlight colors
+        "NvChad/nvim-colorizer.lua",
+        event = { "BufRead", "BufNewFile" },
+        opts = function()
+            return require("plugins.nvim-colorizer")
+        end,
+        config = function(_, opts)
+            require("colorizer").setup(opts)
+        end
     }
 })
