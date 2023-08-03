@@ -12,6 +12,9 @@ vim.g.maplocalleader = " "
 -- New buffer
 keymap("n", "<leader>b", "<cmd> enew<CR>", opts)
 
+-- Toggle nvim tree
+keymap("n", "<leader>e", ":NvimTreeToggle<CR>", opts)
+
 -- Navigate buffers
 keymap("n", "<leader><S-l>", ":bnext<CR>", opts)
 keymap("n", "<leader><S-h>", ":bprevious<CR>", opts)

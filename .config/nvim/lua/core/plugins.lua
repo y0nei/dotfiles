@@ -42,6 +42,9 @@ lazy.setup({
         opts = {
             options = {
                 show_buffer_close_icons = false,
+                offsets = {
+                    { filetype = "NvimTree" }
+                }
             }
         },
         config = function(_, opts)
@@ -83,6 +86,18 @@ lazy.setup({
         },
         config = function(_, opts)
             require("gitsigns").setup(opts)
+        end
+    },
+    { -- File browser
+        "nvim-tree/nvim-tree.lua",
+        dependencies = {
+            "nvim-tree/nvim-web-devicons",
+        },
+        opts = function()
+            return require("plugins.nvim-tree")
+        end,
+        config = function(_, opts)
+            require("nvim-tree").setup(opts)
         end
     }
 })
