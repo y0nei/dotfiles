@@ -64,6 +64,10 @@ lazy.setup({
         -- Additional cmd's to lazy-load the plugin with if no events trigger
         cmd = { "TSInstall", "TSBufEnable" },
         build = ":TSUpdate",
+        dependencies = {
+            -- Rainbow parentheses (UNMAINTAINED SINCE 2023)
+            "p00f/nvim-ts-rainbow"
+        },
         opts = function()
             return require("plugins.treesitter")
         end,
