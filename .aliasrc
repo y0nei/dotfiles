@@ -38,6 +38,7 @@ alias yta-best="yt-dlp --extract-audio --audio-format best "
 alias yta="yt-dlp --extract-audio --audio-format "  # Audio extraction shortcut
 
 # More readable Git output
+alias gs="git status"
 alias gl="git log --oneline --graph --decorate"  # Pretty history graph
 alias gd="git diff | bat"
 alias gds="git diff --staged | bat"
