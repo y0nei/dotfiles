@@ -99,5 +99,10 @@ lazy.setup({
         config = function(_, opts)
             require("nvim-tree").setup(opts)
         end
+    },
+    { -- Better commenting
+        "numToStr/Comment.nvim",
+        event = { "BufRead", "BufNewFile" },
+        opts = {}
     }
 })
