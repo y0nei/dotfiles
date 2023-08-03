@@ -104,5 +104,10 @@ lazy.setup({
         "numToStr/Comment.nvim",
         event = { "BufRead", "BufNewFile" },
         opts = {}
+    },
+    { -- Auto close bracket pairs
+        "windwp/nvim-autopairs",
+        event = "InsertEnter",
+        opts = {}
     }
 })
