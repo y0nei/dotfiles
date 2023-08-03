@@ -34,6 +34,20 @@ lazy.setup({
             }
         }
     },
+    { -- Status bar for buffers and tabs
+        "akinsho/bufferline.nvim", version="*",
+        dependencies = {
+            "nvim-tree/nvim-web-devicons"
+        },
+        opts = {
+            options = {
+                show_buffer_close_icons = false,
+            }
+        },
+        config = function(_, opts)
+            require("bufferline").setup(opts)
+        end
+    },
     { -- Telescope file search
         "nvim-telescope/telescope.nvim", branch = "0.1.x",
         dependencies = {
