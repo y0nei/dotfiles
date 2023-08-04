@@ -52,7 +52,8 @@ lazy.setup({
         "nvim-telescope/telescope.nvim", branch = "0.1.x",
         dependencies = {
             "nvim-lua/plenary.nvim",
-            "nvim-tree/nvim-web-devicons"
+            "nvim-tree/nvim-web-devicons",
+            "folke/todo-comments.nvim"
         }
     },
     { -- Improved syntax highlighting
@@ -148,6 +149,17 @@ lazy.setup({
         },
         config = function(_, opts)
             require("illuminate").configure(opts)
+        end
+    },
+    { -- Find a list of 'TODO', 'BUG', 'NOTE', etc. comments and list them
+        "folke/todo-comments.nvim",
+        cmd = { "TodoTelescope" },
+        event = { "BufRead", "BufNewFile" },
+        opts = function()
+            return require("plugins.configs.todo-comments")
+        end,
+        config = function(_, opts)
+            require("todo-comments").setup(opts)
         end
     }
 })

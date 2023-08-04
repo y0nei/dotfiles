@@ -52,6 +52,11 @@ keymap("n", "[[", function()
     require("illuminate").goto_prev_reference(false)
 end, { unpack(opts), desc = "Previous word reference" })
 
+-- Todo comments
+keymap("n", "]t", function() require("todo-comments").jump_next() end, opts)
+keymap("n", "[t", function() require("todo-comments").jump_prev() end, opts)
+keymap("n", "<leader>ft", ":TodoTelescope<cr>", opts)
+
 -- Visual mode -----------------------------------------------------------------
 
 -- Don't copy replaced text
