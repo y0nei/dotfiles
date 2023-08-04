@@ -1,4 +1,4 @@
-local options = {
+return {
     ensure_installed = { "lua", "vim" },
     highlight = { enable = true },
     indent = { enable = true },
@@ -8,5 +8,3 @@ local options = {
         extended_mode = false
     }
 }
-
-return options

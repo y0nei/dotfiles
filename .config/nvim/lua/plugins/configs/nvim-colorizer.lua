@@ -1,4 +1,4 @@
-options = {
+return {
     filetypes = {
         "*",
         html = { names = true; },
@@ -13,5 +13,3 @@ options = {
         names = false,
     }
 }
-
-return options

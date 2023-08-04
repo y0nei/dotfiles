@@ -19,7 +19,7 @@ vim.api.nvim_create_autocmd("QuitPre", {
     end
 })
 
-local options = {
+return {
     update_focused_file = {
         enable = true
     },
@@ -44,5 +44,3 @@ local options = {
     },
     git = { ignore = false }
 }
-
-return options

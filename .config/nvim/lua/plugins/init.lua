@@ -1,6 +1,6 @@
 local ok, lazy = pcall(require, "lazy")
 if not ok then
-    require("core.bootstrap")
+    require("plugins.bootstrap")
     lazy = require("lazy")
 end
 
@@ -64,10 +64,11 @@ lazy.setup({
         dependencies = {
             -- Rainbow parentheses (UNMAINTAINED SINCE 2023)
             "p00f/nvim-ts-rainbow",
-            "nvim-treesitter/nvim-treesitter"
+            "RRethy/vim-illuminate",
+            "lukas-reineke/indent-blankline.nvim"
         },
         opts = function()
-            return require("plugins.treesitter")
+            return require("plugins.configs.treesitter")
         end,
         config = function(_, opts)
             require("nvim-treesitter.configs").setup(opts)
@@ -102,7 +103,7 @@ lazy.setup({
             "nvim-tree/nvim-web-devicons",
         },
         opts = function()
-            return require("plugins.nvim-tree")
+            return require("plugins.configs.nvim-tree")
         end,
         config = function(_, opts)
             require("nvim-tree").setup(opts)
@@ -129,7 +130,7 @@ lazy.setup({
         "NvChad/nvim-colorizer.lua",
         event = { "BufRead", "BufNewFile" },
         opts = function()
-            return require("plugins.nvim-colorizer")
+            return require("plugins.configs.nvim-colorizer")
         end,
         config = function(_, opts)
             require("colorizer").setup(opts)
