@@ -9,7 +9,7 @@ vim.g.maplocalleader = " "
 -- Normal mode -----------------------------------------------------------------
 
 -- New buffer
-keymap("n", "<leader>b", "<cmd> enew<CR>", opts)
+keymap("n", "<leader>bn", "<cmd> enew<CR>", opts)
 
 -- Toggle nvim tree
 keymap("n", "<leader>e", ":NvimTreeToggle<CR>", opts)
