@@ -44,6 +44,14 @@ keymap("n", "<leader>ghS", ":Gitsigns stage_buffer<CR>", opts)
 keymap("n", "<leader>ghR", ":Gitsigns reset_buffer<CR>", opts)
 keymap({ "o", "x" }, "<leader>gh", ":<C-u>Gitsigns select_hunk<CR>", opts)
 
+-- Vim illuminate
+keymap("n", "]]", function()
+    require("illuminate").goto_next_reference(false)
+end, { unpack(opts), desc = "Next word reference" })
+keymap("n", "[[", function()
+    require("illuminate").goto_prev_reference(false)
+end, { unpack(opts), desc = "Previous word reference" })
+
 -- Visual mode -----------------------------------------------------------------
 
 -- Don't copy replaced text

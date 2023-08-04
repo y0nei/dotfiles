@@ -117,5 +117,19 @@ lazy.setup({
         config = function(_, opts)
             require("colorizer").setup(opts)
         end
+    },
+    { -- Highlight instances of the same word
+        "RRethy/vim-illuminate",
+        event = { "BufRead", "BufNewFile" },
+        opts = {
+            delay = 200,
+            large_file_cutoff = 2000,
+            large_file_overrides = {
+                providers = { "lsp" }
+            }
+        },
+        config = function(_, opts)
+            require("illuminate").configure(opts)
+        end
     }
 })
