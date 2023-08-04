@@ -63,7 +63,8 @@ lazy.setup({
         build = ":TSUpdate",
         dependencies = {
             -- Rainbow parentheses (UNMAINTAINED SINCE 2023)
-            "p00f/nvim-ts-rainbow"
+            "p00f/nvim-ts-rainbow",
+            "nvim-treesitter/nvim-treesitter"
         },
         opts = function()
             return require("plugins.treesitter")
@@ -71,6 +72,15 @@ lazy.setup({
         config = function(_, opts)
             require("nvim-treesitter.configs").setup(opts)
         end
+    },
+    { -- Indentation guides
+        "lukas-reineke/indent-blankline.nvim",
+        event = { "BufRead", "BufNewFile" },
+        opts = {
+            -- char = "▏",
+            show_trailing_blankline_indent = false,
+            use_treesitter = true
+        }
     },
     { -- Gitsigns
         "lewis6991/gitsigns.nvim",
