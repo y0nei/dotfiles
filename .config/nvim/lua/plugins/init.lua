@@ -161,5 +161,73 @@ lazy.setup({
         config = function(_, opts)
             require("todo-comments").setup(opts)
         end
+    },
+
+    -- LSP
+    {
+        "williamboman/mason.nvim",
+        cmd = {
+            "Mason", "MasonInstall", "MasonInstallAll",
+            "MasonUninstall", "MasonUninstallAll", "MasonLog"
+        },
+        build = ":MasonUpdate",
+        opts = {
+            ensure_installed = { "lua-language-server", "stylua" }
+        }
+    },
+    {
+        "neovim/nvim-lspconfig",
+        config = function()
+            require("plugins.configs.lspconfig")
+        end
+    },
+
+    -- Completions
+    {
+        "hrsh7th/nvim-cmp",
+        event = "InsertEnter",
+        dependencies = {
+            { -- Snuppet plugin
+                "L3MON4D3/LuaSnip",
+                dependencies = "rafamadriz/friendly-snippets",
+                opts = {
+                    history = true,
+                    updateevents = "TextChanged,TextChangedI"
+                },
+                config = function(_, opts)
+                    require("plugins.configs.luasnip").setup(opts)
+                end
+            },
+            { -- Auto close bracket pairs
+                "windwp/nvim-autopairs",
+                opts = {
+                    fast_wrap = {},
+                    disable_filetype = { "TelescopePrompt", "vim" },
+                },
+                config = function(_, opts)
+                    require("nvim-autopairs").setup(opts)
+
+                    -- setup cmp for autopairs
+                    local cmp_pairs = require("nvim-autopairs.completion.cmp")
+                    require("cmp").event:on(
+                        "confirm_done",
+                        cmp_pairs.on_confirm_done()
+                    )
+                end
+            },
+            { -- CMP sources
+                "saadparwaiz1/cmp_luasnip",
+                "hrsh7th/cmp-nvim-lua",
+                "hrsh7th/cmp-nvim-lsp",
+                "hrsh7th/cmp-buffer",
+                "hrsh7th/cmp-path"
+            }
+        },
+        opts = function()
+            return require("plugins.configs.cmp")
+        end,
+        config = function(_, opts)
+            require("cmp").setup(opts)
+        end
     }
 })

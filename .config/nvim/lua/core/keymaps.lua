@@ -45,6 +45,7 @@ keymap("n", "<leader>ghR", ":Gitsigns reset_buffer<CR>", opts)
 keymap({ "o", "x" }, "<leader>gh", ":<C-u>Gitsigns select_hunk<CR>", opts)
 
 -- Vim illuminate
+-- TODO: Figure out why does this not work when LSP provides highlights
 keymap("n", "]]", function()
     require("illuminate").goto_next_reference(false)
 end, { unpack(opts), desc = "Next word reference" })
@@ -56,6 +57,13 @@ end, { unpack(opts), desc = "Previous word reference" })
 keymap("n", "]t", function() require("todo-comments").jump_next() end, opts)
 keymap("n", "[t", function() require("todo-comments").jump_prev() end, opts)
 keymap("n", "<leader>ft", ":TodoTelescope<cr>", opts)
+
+-- LSP Related
+
+keymap("n", "<space>d", vim.diagnostic.open_float, opts)
+keymap("n", "[d", vim.diagnostic.goto_prev, opts)
+keymap("n", "]d", vim.diagnostic.goto_next, opts)
+keymap("n", "<space>q", vim.diagnostic.setloclist, opts)
 
 -- Visual mode -----------------------------------------------------------------
 
