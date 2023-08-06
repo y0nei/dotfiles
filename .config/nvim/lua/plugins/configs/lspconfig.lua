@@ -64,5 +64,13 @@ require("lspconfig").lua_ls.setup {
         }
     }
 }
+require("lspconfig").pyright.setup {
+    on_attach = M.on_attach,
+    capabilities = M.capabilities,
+}
+require("lspconfig").html.setup {
+    on_attach = M.on_attach,
+    capabilities = M.capabilities,
+}
 
 return M
