@@ -7,6 +7,7 @@ systemd — the default init system for distributions like Debian or Arch Linux.
 
 - Usefull scripts in `~/.local/bin`
 - [Hyprland config](.config/hypr/) <small>([xbps-src template](https://github.com/Makrennel/hyprland-void))</small>
+- [Waybar config](.config/waybar/)
 - Shell configs
 	- [Zsh](.zshrc) / [Starship](.config/starship.toml)
 - [Neovim config](.config/nvim/)
