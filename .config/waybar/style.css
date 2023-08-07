@@ -1,0 +1,150 @@
+/* Keyframes */
+@keyframes blink {
+    to {
+        background-color: #ffffff;
+        color: black;
+    }
+}
+
+@keyframes glare {
+	0% { background-position: 0% 0 }
+	70% { background-position: -200% 0 }
+	100% { background-position: -200% 0 }
+}
+
+/* Various colors */
+@define-color bg #171712;
+@define-color text #ffffff;
+@define-color light #797a5e;
+@define-color dark #4E4F3D;
+@define-color darker #404630;
+@define-color focus #a7c080;
+@define-color highlight #458588;
+
+@define-color module @dark;
+@define-color battery #44d480;
+@define-color battery-charging #afee27;
+
+* { /* Reset all styles */
+    all: unset;
+    border: none;
+    border-radius: 4px;
+    min-height: 0;
+}
+
+window#waybar { /* The whole bar */
+    background: @bg;
+    color: @text;
+    font-family: "JetBrains Mono Nerd Font", sans-serif;
+    font-size: 14px;
+    border-radius: 0;
+}
+
+/* Vertical margin widgets
+ * Spacing variable in config occupies horizontal spacing */
+widget > *:not(#tray) {
+     margin: 5px 0;
+}
+/* Fix small alignment issues */
+.modules-left > widget:first-child > #network {
+    margin-left: 5px;
+}
+.modules-right > widget:last-child > * {
+    margin-right: 5px;
+}
+
+/* Workspaces */
+#workspaces button {
+    padding: 0 7px;
+    background-color: transparent;
+    color: @focus;
+}
+#workspaces button.persistent {
+    color: @dark;
+}
+#workspaces button.urgent {
+    color: #eb4d4b;
+}
+
+/* Modules */
+#clock,
+#battery,
+#cpu,
+#memory,
+#temperature,
+#backlight,
+#bluetooth,
+#network,
+#pulseaudio {
+    padding: 0 10px;
+    color: @text;
+    background-color: @module;
+}
+/* Highlight some in a lighter background */
+#network,
+#clock,
+#backlight,
+#bluetooth {
+    background-color: @light;
+}
+
+/* Current active window */
+#window {
+    background-color: @dark;
+}
+
+/* Network */
+#network.disconnected {
+    background-color: #eb4d4b;
+}
+
+/* Pulse */
+#pulseaudio { background-color: @highlight }
+#pulseaudio.muted {
+    background-color: #90b1b1;
+}
+
+/* Battery widgets */
+#battery {
+    background-color: @highlight;
+}
+#battery.plugged {
+    background-color: @battery;
+    color: #000000;
+}
+#battery.charging {
+    color: #000000;
+    background-image: linear-gradient(
+        120deg,
+        @battery 50%,
+        @battery-charging 75%,
+        @battery 100%
+    );
+	background-size: 200%;
+	animation: glare 1.5s ease-in-out infinite;
+}
+#battery.discharging {
+    border: 2px solid #f53c3c;
+}
+
+battery.critical:not(.plugged) {
+    background-color: #f53c3c;
+    color: #ffffff;
+    animation-name: blink;
+    animation-duration: 0.5s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+/* Tray */
+#tray {
+    padding: 0 5px;
+}
+#tray > .passive {
+    -gtk-icon-effect: dim;
+}
+#tray > .needs-attention {
+    -gtk-icon-effect: highlight;
+    background-color: #eb4d4b;
+}
