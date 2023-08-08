@@ -26,7 +26,6 @@
 @define-color battery-charging #afee27;
 
 * { /* Reset all styles */
-    all: unset;
     border: none;
     border-radius: 4px;
     min-height: 0;
