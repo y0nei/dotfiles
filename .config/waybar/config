@@ -121,7 +121,7 @@
             "critical": 15
         },
         "format": "{capacity}%",
-        "format-discharging": "{capacity}% ({power}w)",
+        "format-discharging": "{capacity}% ({power:0.1f}w)",
         "format-charging": "{capacity}%",
         "format-plugged": "{capacity}%",
         "format-alt": "{time} {icon}"
@@ -133,7 +133,7 @@
             "critical": 15
         },
         "format": "{capacity}%",
-        "format-discharging": "{capacity}% ({power}w)",
+        "format-discharging": "{capacity}% ({power:0.1f}w)",
         "format-charging": "{capacity}%",
         "format-plugged": "{capacity}%",
         "format-alt": "{time} {icon}"
