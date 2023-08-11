@@ -11,6 +11,10 @@ SAVEHIST=10000
 # Backup PS1 whenever starship is not avaliable
 PS1="%B%F{yellow}%n%f%F{red}@%f%F{blue}%m%b%f %F{#888}%~%f $ "
 
+# Load the completion system and change zcompdump file location
+autoload -Uz compinit
+compinit -d $XDG_CACHE_HOME/zsh/zcompdump-$ZSH_VERSION
+
 # Better tab completion
 zstyle ":completion:*" menu select
 zstyle ":completion:*" matcher-list "m:{a-zA-Z}={A-Za-z}"  # case insensitive
@@ -31,10 +35,6 @@ zle -N fzf-history
 bindkey "^R" fzf-history
 
 # === Plugins =================================================================
-
-# Load compinit and change zcompdump file location
-autoload -Uz compinit
-compinit -d $XDG_CACHE_HOME/zsh/zcompdump-$ZSH_VERSION
 
 # Load plugins and supress error output
 source $XDG_DATA_HOME/zsh-plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2>/dev/null
