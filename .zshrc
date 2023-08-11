@@ -24,6 +24,7 @@ zstyle ":completion:*" menu select
 zstyle ":completion:*" matcher-list "m:{a-zA-Z}={A-Za-z}"  # case insensitive
 zstyle ":completion:*" list-colors "${(s.:.)LS_COLORS}"  # colored output
 _comp_options+=(globdots)  # Include dotfiles
+bindkey "^[[Z" reverse-menu-complete # Navigate backwards with Shift+TAB
 
 # Load aliases
 source $HOME/.config/.aliasrc
