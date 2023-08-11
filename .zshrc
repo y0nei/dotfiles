@@ -8,6 +8,10 @@ SAVEHIST=10000
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
+# Vi mode & faster mode switching
+bindkey -v
+export KEYTIMEOUT=1
+
 # Backup PS1 whenever starship is not avaliable
 PS1="%B%F{yellow}%n%f%F{red}@%f%F{blue}%m%b%f %F{#888}%~%f $ "
 
