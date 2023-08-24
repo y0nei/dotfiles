@@ -1,6 +1,11 @@
 #!/bin/sh
 
+# Overrides
+alias sudo="doas"
 alias nv="nvim"
+alias vim="nvim"
+# alias bat="batcat" # Debian
+
 alias ports="netstat -tulanp"  # List all TCP/UDP ports
 
 # Verbosity & "Safty nets" for file operations
