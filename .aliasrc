@@ -30,12 +30,12 @@ alias dirusage="du -ch | tail -1"  # Show disk usage in current dir
 # Partition usage without temporary memory values
 alias partusage="df -T --exclude-type=tmpfs --exclude-type=devtmpfs"
 
-# "ls" -> "exa"
-alias ls="exa -la --color=always --group-directories-first"  # Preferred
-alias la="exa -a --color=always --group-directories-first"   # All files & dirs
-alias ll="exa -l --color=always --group-directories-first"   # Long format
-alias lt="exa -aT --color=always --group-directories-first"  # Tree listing
-alias l.="exa -a | egrep '^\.'"                              # Just dotfiles
+# "ls" -> "eza" (exa is unmaintained, use eza fork)
+alias ls="eza -la --color=always --group-directories-first"  # Preferred
+alias la="eza -a --color=always --group-directories-first"   # All files & dirs
+alias ll="eza -l --color=always --group-directories-first"   # Long format
+alias lt="eza -aT --color=always --group-directories-first"  # Tree listing
+alias l.="eza -a | egrep '^\.'"                              # Just dotfiles
 
 # yt-dlp
 alias ytv-best="yt-dlp -f bestvideo+bestaudio "
