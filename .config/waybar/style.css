@@ -52,17 +52,38 @@ widget > *:not(#tray) {
     margin-right: 5px;
 }
 
-/* Workspaces */
-#workspaces button {
+/* Workspaces
+ * - Hyprland uses #workspaces
+ * - River uses #tags */
+#workspaces button,
+#tags button {
     padding: 0 7px;
     background-color: transparent;
-    color: @focus;
 }
-#workspaces button.persistent {
+#workspaces button.visible,
+#workspaces button.empty,
+#tags button {
     color: @dark;
 }
-#workspaces button.urgent {
-    color: #eb4d4b;
+
+/* Focused / Active */
+#workspaces button.active { color: @focus }
+#tags button.focused { background-color: @focus }
+
+/* Urgent */
+#workspaces button.urgent { color: #eb4d4b }
+#tags button.urgent { background-color: #eb4d4b }
+
+#tags button {
+    font-weight: bold;
+    border-radius: 50%;
+    padding: 0 4.5px;
+    margin: 0 2.5px;
+}
+#tags button.occupied {
+    /* TODO: Use maths to calculate this */
+    border: 2px solid @focus;
+    padding: 0 2.5px;
 }
 
 /* Modules */
