@@ -2,9 +2,13 @@
 
 # Overrides
 alias sudo="doas"
-alias nv="nvim"
 alias vim="nvim"
 # alias bat="batcat" # Debian
+
+# Shortcuts
+alias nv="nvim"
+alias drun="doom run"
+alias dterm="doom run -nw"
 
 alias ports="netstat -tulanp"  # List all TCP/UDP ports
 
