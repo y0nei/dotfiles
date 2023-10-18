@@ -33,7 +33,7 @@ if [ -d "$HOME/.local/bin" ]; then
 fi
 
 # Load aliases
-[ -f "$HOME/.config/.aliasrc" ] && source "$HOME/.config/.aliasrc"
+[ -f "$HOME/.config/.aliases" ] && source "$HOME/.config/.aliases"
 
 # Autostart WM upon tty login
 if [ "$(tty)" = "/dev/tty1" ]; then

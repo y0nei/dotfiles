@@ -27,7 +27,7 @@ _comp_options+=(globdots)  # Include dotfiles
 bindkey "^[[Z" reverse-menu-complete # Navigate backwards with Shift+TAB
 
 # Load aliases
-source $HOME/.config/.aliasrc
+source $HOME/.config/.aliases
 
 # === Utils ===================================================================
 
