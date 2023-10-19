@@ -73,4 +73,11 @@ require("lspconfig").html.setup {
     capabilities = M.capabilities,
 }
 
+-- Enable (broadcasting) snippet capability for completion
+M.capabilities.textDocument.completion.completionItem.snippetSupport = true
+require("lspconfig").cssls.setup {
+    on_attach = M.on_attach,
+    capabilities = M.capabilities,
+}
+
 return M
