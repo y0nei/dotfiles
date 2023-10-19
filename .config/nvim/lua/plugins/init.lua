@@ -77,11 +77,11 @@ lazy.setup({
     },
     { -- Indentation guides
         "lukas-reineke/indent-blankline.nvim",
+        main = "ibl",
         event = { "BufRead", "BufNewFile" },
         opts = {
-            -- char = "▏",
-            show_trailing_blankline_indent = false,
-            use_treesitter = true
+            indent = { char = "▏" },
+            scope = { enabled = false }
         }
     },
     { -- Gitsigns
