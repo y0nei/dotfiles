@@ -47,6 +47,8 @@ M.on_attach = function(client, bufnr)
 end
 
 M.capabilities = vim.lsp.protocol.make_client_capabilities()
+-- Enable (broadcasting) snippet capability for completion
+M.capabilities.textDocument.completion.completionItem.snippetSupport = true
 
 require("lspconfig").lua_ls.setup {
     on_attach = M.on_attach,
@@ -72,12 +74,33 @@ require("lspconfig").html.setup {
     on_attach = M.on_attach,
     capabilities = M.capabilities,
 }
-
--- Enable (broadcasting) snippet capability for completion
-M.capabilities.textDocument.completion.completionItem.snippetSupport = true
 require("lspconfig").cssls.setup {
     on_attach = M.on_attach,
     capabilities = M.capabilities,
 }
+
+-- efm related settings --------------------------------------------------------
+
+local languages = require("efmls-configs.defaults").languages()
+local efmls_config = {
+    filetypes = vim.tbl_keys(languages),
+    settings = {
+        rootMarkers = { ".git/" },
+        languages = languages,
+    },
+    init_options = {
+        documentFormatting = true,
+        documentRangeFormatting = true,
+    },
+}
+
+require("lspconfig").efm.setup(vim.tbl_extend("force", efmls_config, {
+    on_attach = M.on_attach,
+    capabilities = M.capabilities,
+    -- Custom languages, or override existing ones
+    html = {
+        require('efmls-configs.formatters.prettier'),
+    },
+}))
 
 return M

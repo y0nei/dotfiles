@@ -181,6 +181,11 @@ lazy.setup({
             require("plugins.configs.lspconfig")
         end
     },
+    {
+        "creativenull/efmls-configs-nvim",
+        version = "v1.x.x",
+        dependencies = { "neovim/nvim-lspconfig" }
+    },
 
     -- Completions
     {
