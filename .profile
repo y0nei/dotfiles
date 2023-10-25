@@ -32,6 +32,11 @@ if [ -d "$HOME/.local/bin" ]; then
     PATH="$HOME/.local/bin:$PATH"
 fi
 
+
+if [ -d "$HOME/.config/emacs/bin" ]; then
+    PATH="$HOME/.config/emacs/bin:$PATH"
+fi
+
 # Load aliases
 [ -f "$HOME/.config/.aliases" ] && source "$HOME/.config/.aliases"
 
