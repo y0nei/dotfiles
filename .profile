@@ -32,6 +32,9 @@ if [ -d "$HOME/.local/bin" ]; then
     PATH="$HOME/.local/bin:$PATH"
 fi
 
+if [ -d "$GOPATH/bin" ]; then
+    PATH="$GOPATH/bin:$PATH"
+fi
 
 if [ -d "$HOME/.config/emacs/bin" ]; then
     PATH="$HOME/.config/emacs/bin:$PATH"
