@@ -27,6 +27,10 @@ export TERMINAL="alacritty"
 export BROWSER="librewolf"
 export EDITOR="nvim"
 
+# Settings for bemenu
+export BEMENU_OPTS="-H 20 -c -l 10 -W 0.33 -B 2"
+BEMENU_OPTS+=' --bdr "#A7C080" --tf "#A7C080" --hb "#A7C080" --hf "#000000"'
+
 # Add ~/.local/bin to PATH
 if [ -d "$HOME/.local/bin" ]; then
     PATH="$HOME/.local/bin:$PATH"
