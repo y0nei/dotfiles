@@ -1,12 +1,12 @@
-# Void Dotfiles
-⚠️ **CAUTION**: Some commands may not work properly when used in a different
-distribution, since Void Linux uses [runit][3] as its init system instead of 
-systemd — the default init system for distributions like Debian or Arch Linux.
+# Dotfiles
+⚠️ **CAUTION**: Some commands or configurations may not work as intended when used
+in a distribution other than [Artix Linux][3]. Always check configurations carefully
+before using them on your own system ;3
 
 ## Table of contents
 
 - Usefull scripts in `~/.local/bin`
-- [Hyprland config](.config/hypr/) <small>([xbps-src template](https://github.com/Makrennel/hyprland-void))</small>
+- [Hyprland config](.config/hypr/)
 - [Waybar config](.config/waybar/)
 - Shell configs
 	- [Zsh](.zshrc) / [Starship](.config/starship.toml)
@@ -28,4 +28,4 @@ systemd — the default init system for distributions like Debian or Arch Linux.
 
 [1]: https://github.com/nwg-piotr/nwg-look
 [2]: https://github.com/Cloudef/bemenu
-[3]: https://docs.voidlinux.org/config/services/index.html
+[3]: https://artixlinux.org/
