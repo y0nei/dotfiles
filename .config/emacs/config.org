@@ -9,6 +9,9 @@
   - [[#source-the-scripts][Source the scripts]]
   - [[#evil-mode][Evil mode]]
   - [[#keybinds][Keybinds]]
+- [[#visual-tweaks][Visual tweaks]]
+  - [[#reset-default-interface-styling][Reset default interface styling]]
+  - [[#theme][Theme]]
 - [[#org-mode][Org mode]]
   - [[#table-of-contents][Table of contents]]
 
@@ -106,6 +109,39 @@
         which-key-max-description-length 25
         which-key-allow-imprecise-window-fit t
         which-key-separator " → " ))
+#+end_src
+
+
+* Visual tweaks
+** Reset default interface styling
+*** Disable menubar and scrollbars
+#+begin_src elisp
+(menu-bar-mode -1)
+(tool-bar-mode -1)
+(scroll-bar-mode -1)
+#+end_src
+
+*** Display line numbers and truncated lines
+#+begin_src elisp
+(global-display-line-numbers-mode 1)
+(global-visual-line-mode t)
+#+end_src
+
+** Theme
+#+begin_src elisp
+(use-package doom-themes
+  :elpaca t
+  :config
+  ;; Global settings (defaults)
+  ;; Set either to nil to universally disable
+  (setq doom-themes-enable-bold t
+        doom-themes-enable-italic t)
+  (load-theme 'doom-one t)
+
+  ;; Enable flashing mode-line on errors
+  (doom-themes-visual-bell-config)
+  ;; Corrects (and improves) org-mode's native fontification.
+  (doom-themes-org-config))
 #+end_src
 
 
