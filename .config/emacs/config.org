@@ -213,3 +213,21 @@ Disable WYSIWYG while mousing over in insert mode for easier editing.
                                 (* 3 (+ 2 org-list-indent-offset))) "\\}\\(-\\) ")
     (0 (prog1 () (compose-region (match-beginning 1) (match-end 1) "▹"))))))
 #+end_src
+
+*** Nice folding characters
+#+begin_src elisp
+(setq org-ellipsis " ▼ ")
+#+end_src
+
+*** Center Org buffers for readability
+#+begin_src elisp
+(use-package visual-fill-column
+  :elpaca t
+  :config
+  (defun yonei/org-mode-visual-fill ()
+    (setq visual-fill-column-width 100
+          visual-fill-column-center-text t)
+    (visual-fill-column-mode 1))
+
+  (add-hook 'org-mode-hook #'yonei/org-mode-visual-fill))
+#+end_src
