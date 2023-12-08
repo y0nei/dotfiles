@@ -11,6 +11,7 @@ before using them on your own system ;3
 - Shell configs
 	- [Zsh](.zshrc) / [Starship](.config/starship.toml)
 - [Neovim config](.config/nvim/)
+- [Emacs config](.config/nvim/) <small>(Emacs 29 based)</small>
 - [Alacritty config](.config/alacritty.yml)  
 *... and more*
 
