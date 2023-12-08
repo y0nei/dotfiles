@@ -2,3 +2,32 @@
 #+AUTHOR: Yonei <yonei@proton.me>
 #+STARTUP: showeverything
 #+OPTIONS: toc:2
+
+* Important stuff to load first
+** Add the scripts directory to path
+#+begin_src elisp
+(add-to-list 'load-path (expand-file-name "scripts" user-emacs-directory))
+#+end_src
+
+** Source the scripts
+#+begin_src elisp
+(require 'elpaca-bootstrap)  ;; Elpaca package manager setup
+#+end_src
+
+** Evil mode
+#+begin_src elisp
+;; Enable Evil
+(use-package evil
+  :elpaca t
+  :init
+  (setq evil-want-keybinding nil)
+  (evil-mode))
+
+;; Evil mode functionality for various other tools
+(use-package evil-collection
+  :elpaca t
+  :after evil
+  :config
+  (setq evil-collection-mode-list '(dashboard dired))
+  (evil-collection-init))
+#+end_src

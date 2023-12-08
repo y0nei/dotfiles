@@ -3,6 +3,7 @@
 *~
 .#*
 
+.config/emacs/config.el
 .config/emacs/eln-cache
 .config/emacs/auto-save-list
 .config/emacs/recentf
