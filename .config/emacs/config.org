@@ -8,6 +8,7 @@
   - [[#add-the-scripts-directory-to-path][Add the scripts directory to path]]
   - [[#source-the-scripts][Source the scripts]]
   - [[#evil-mode][Evil mode]]
+  - [[#keybinds][Keybinds]]
 - [[#org-mode][Org mode]]
   - [[#table-of-contents][Table of contents]]
 
@@ -39,6 +40,74 @@
   (setq evil-collection-mode-list '(dashboard dired))
   (evil-collection-init))
 #+end_src
+
+** Keybinds
+#+begin_src elisp
+(use-package general
+  :elpaca t
+  :config
+  (general-evil-setup)
+
+  ;; Set 'SPC' as global leader key
+  (general-create-definer yonei/leader-keys
+    :states '(normal insert visual emacs)
+    :keymaps 'override
+    :prefix "SPC" ;; leader key
+    :global-prefix "M-SPC") ;; leader key for insert mode
+
+  (yonei/leader-keys
+    "." '(find-file :wk "File search")
+    "," '(switch-to-buffer :wk "Switch to buffer")
+
+    "b" '(:ignore t :wk "buffer")
+    "b k" '(kill-this-buffer :wk "Kill current buffer")
+    "b n" '(next-buffer :wk "Next buffer")
+    "b p" '(previous-buffer :wk "Previous buffer")
+    "b r" '(revert-buffer :wk "Reload buffer")
+
+    "w" '(:ignore t :wk "window")
+    "w h" '(evil-window-left :wk "Window left")
+    "w j" '(evil-window-down :wk "Window down")
+    "w k" '(evil-window-up :wk "Window up")
+    "w l" '(evil-window-right :wk "Window right")
+    "w c" '(delete-window :wk "Close current window")
+
+    "f" '(:ignore t :wk "file")
+    "f r" '(recentf :wk "Find recent files")
+    "f c" '((lambda () (interactive)
+              (find-file (expand-file-name "config.org" user-emacs-directory)))
+            :wk "Open emacs config.org")
+
+    "h" '(:ignore t :wk "help")
+    "h f" '(describe-function :wk "Describe function")
+    "h v" '(describe-variable :wk "Describe variable")
+    "h r r" '((lambda () (interactive)
+                (load-file user-init-file)
+                (ignore (elpaca-process-queues)))
+              :wk "Reload emacs config")))
+#+end_src
+
+*** Which-key
+#+begin_src elisp
+(use-package which-key
+  :elpaca t
+  :init
+  (which-key-mode 1)
+  :config
+  (setq which-key-popup-type 'minibuffer
+        which-key-sort-order #'which-key-key-order-alpha
+        which-key-sort-uppercase-first nil
+        which-key-add-column-padding 1
+        which-key-max-display-columns nil
+        which-key-min-display-lines 6
+        which-key-side-window-slot -10
+        which-key-side-window-max-height 0.25
+        which-key-idle-delay 0.8
+        which-key-max-description-length 25
+        which-key-allow-imprecise-window-fit t
+        which-key-separator " → " ))
+#+end_src
+
 
 * Org mode
 ** Table of contents
