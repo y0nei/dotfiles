@@ -15,6 +15,7 @@
 - [[#org-mode][Org mode]]
   - [[#table-of-contents][Table of contents]]
   - [[#org-bullets][Org bullets]]
+  - [[#wysiwyg][WYSIWYG]]
 
 * Important stuff to load first
 ** Add the scripts directory to path
@@ -161,4 +162,27 @@
 (use-package org-bullets
   :elpaca t
   :hook (org-mode . (lambda () (org-bullets-mode 1))))
+#+end_src
+
+** WYSIWYG
+Disable WYSIWYG while mousing over in insert mode for easier editing.
+#+begin_src elisp
+(use-package org-appear
+  :elpaca t
+  :hook (org-mode . org-appear-mode)
+  :config
+  (setq org-hide-emphasis-markers t
+        org-appear-autolinks t
+        org-appear-trigger 'manual)
+
+  ;; Additional hook for Evil mode integration
+  :hook (org-mode . (lambda ()
+                      (add-hook 'evil-insert-state-entry-hook
+                                #'org-appear-manual-start
+                                nil
+                                t)
+                      (add-hook 'evil-insert-state-exit-hook
+                                #'org-appear-manual-stop
+                                nil
+                                t))))
 #+end_src
