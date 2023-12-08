@@ -1,0 +1,12 @@
+# Temp files
+\#*\#
+*~
+.#*
+
+.config/emacs/eln-cache
+.config/emacs/auto-save-list
+.config/emacs/recentf
+# Elpa and Elpaca packages
+.config/emacs/elpa*/
+# Emacs-W3
+.config/emacs/url/

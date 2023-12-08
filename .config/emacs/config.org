@@ -1,0 +1,4 @@
+#+TITLE: Yonei's Emacs config
+#+AUTHOR: Yonei <yonei@proton.me>
+#+STARTUP: showeverything
+#+OPTIONS: toc:2
