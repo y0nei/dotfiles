@@ -16,6 +16,7 @@
   - [[#table-of-contents][Table of contents]]
   - [[#org-bullets][Org bullets]]
   - [[#wysiwyg][WYSIWYG]]
+  - [[#visual-tweaks-1][Visual tweaks]]
 
 * Important stuff to load first
 ** Add the scripts directory to path
@@ -185,4 +186,30 @@ Disable WYSIWYG while mousing over in insert mode for easier editing.
                                 #'org-appear-manual-stop
                                 nil
                                 t))))
+#+end_src
+
+** Visual tweaks
+*** Different list characters per embedding level
+[[https://emacs.stackexchange.com/a/45727]]
+
+#+begin_src elisp
+;; First
+(font-lock-add-keywords 'org-mode
+  '(("^\\(-\\) "
+    (0 (prog1 () (compose-region (match-beginning 1) (match-end 1) "•"))))))
+;; Second embedding
+(font-lock-add-keywords 'org-mode
+  `((,(concat "^[[:space:]]\\{" (number-to-string
+                                (+ 2 org-list-indent-offset)) "\\}\\(-\\) ")
+    (0 (prog1 () (compose-region (match-beginning 1) (match-end 1) "◦"))))))
+;; Third embedding
+(font-lock-add-keywords 'org-mode
+  `((,(concat "^[[:space:]]\\{" (number-to-string
+                                (* 2 (+ 2 org-list-indent-offset))) "\\}\\(-\\) ")
+    (0 (prog1 () (compose-region (match-beginning 1) (match-end 1) "▸"))))))
+;; Forth embedding
+(font-lock-add-keywords 'org-mode
+  `((,(concat "^[[:space:]]\\{" (number-to-string
+                                (* 3 (+ 2 org-list-indent-offset))) "\\}\\(-\\) ")
+    (0 (prog1 () (compose-region (match-beginning 1) (match-end 1) "▹"))))))
 #+end_src
