@@ -3,6 +3,14 @@
 #+STARTUP: showeverything
 #+OPTIONS: toc:2
 
+* Table of contents :toc:
+- [[#important-stuff-to-load-first][Important stuff to load first]]
+  - [[#add-the-scripts-directory-to-path][Add the scripts directory to path]]
+  - [[#source-the-scripts][Source the scripts]]
+  - [[#evil-mode][Evil mode]]
+- [[#org-mode][Org mode]]
+  - [[#table-of-contents][Table of contents]]
+
 * Important stuff to load first
 ** Add the scripts directory to path
 #+begin_src elisp
@@ -30,4 +38,13 @@
   :config
   (setq evil-collection-mode-list '(dashboard dired))
   (evil-collection-init))
+#+end_src
+
+* Org mode
+** Table of contents
+#+begin_src elisp
+(use-package toc-org
+  :elpaca t
+  :commands toc-org-enable
+  :hook (org-mode . toc-org-enable))
 #+end_src
