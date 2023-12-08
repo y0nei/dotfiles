@@ -14,6 +14,7 @@
   - [[#theme][Theme]]
 - [[#org-mode][Org mode]]
   - [[#table-of-contents][Table of contents]]
+  - [[#org-bullets][Org bullets]]
 
 * Important stuff to load first
 ** Add the scripts directory to path
@@ -152,4 +153,12 @@
   :elpaca t
   :commands toc-org-enable
   :hook (org-mode . toc-org-enable))
+#+end_src
+
+** Org bullets
+#+begin_src elisp
+(add-hook 'org-mode-hook 'org-indent-mode)
+(use-package org-bullets
+  :elpaca t
+  :hook (org-mode . (lambda () (org-bullets-mode 1))))
 #+end_src
