@@ -12,6 +12,7 @@
 - [[#visual-tweaks][Visual tweaks]]
   - [[#reset-default-interface-styling][Reset default interface styling]]
   - [[#theme][Theme]]
+  - [[#fonts][Fonts]]
 - [[#org-mode][Org mode]]
   - [[#table-of-contents][Table of contents]]
   - [[#org-bullets][Org bullets]]
@@ -145,6 +146,32 @@
   (doom-themes-visual-bell-config)
   ;; Corrects (and improves) org-mode's native fontification.
   (doom-themes-org-config))
+#+end_src
+
+** Fonts
+TODO: Adjust this later
+#+begin_src elisp
+(set-face-attribute 'default nil
+  :font "JetBrainsMono Nerd Font"
+  :height 120
+  :weight 'medium)
+(set-face-attribute 'variable-pitch nil
+  :font "Overpass"
+  :height 140
+  :weight 'medium)
+(set-face-attribute 'fixed-pitch nil
+  :font "JetBrainsMono Nerd Font"
+  :height 120
+  :weight 'medium)
+
+;; Make commented text and keywords italics.
+(set-face-attribute 'font-lock-comment-face nil :slant 'italic)
+(set-face-attribute 'font-lock-keyword-face nil :slant 'italic)
+
+;; This sets the default font on all graphical frames created after restarting Emacs.
+;; Does the same thing as 'set-face-attribute default' above, but emacsclient fonts
+;; are not right unless I also add this method of setting the default font.
+(add-to-list 'default-frame-alist '(font . "JetBrains Mono-12"))
 #+end_src
 
 
