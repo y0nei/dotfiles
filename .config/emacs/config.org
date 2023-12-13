@@ -44,7 +44,7 @@
   :elpaca t
   :after evil
   :config
-  (setq evil-collection-mode-list '(dashboard dired))
+  (setq evil-collection-mode-list '(dashboard dired ibuffer))
   (evil-collection-init))
 #+end_src
 
@@ -67,6 +67,7 @@
     "," '(switch-to-buffer :wk "Switch to buffer")
 
     "b" '(:ignore t :wk "buffer")
+    "b i" '(ibuffer :wk "iBuffer")
     "b k" '(kill-this-buffer :wk "Kill current buffer")
     "b n" '(next-buffer :wk "Next buffer")
     "b p" '(previous-buffer :wk "Previous buffer")
