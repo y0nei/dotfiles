@@ -80,6 +80,13 @@
     "w l" '(evil-window-right :wk "Window right")
     "w c" '(delete-window :wk "Close current window")
 
+    "e v" '(:ignore t :wk "evaluate")
+    "e v b" '(eval-buffer :wk "Evaluate elisp in buffer")
+    "e v d" '(eval-defun :wk "Evaluate defun containing or after point")
+    "e v e" '(eval-expression :wk "Evaluate and elisp expression")
+    "e v l" '(eval-last-sexp :wk "Evaluate elisp expression before point")
+    "e v r" '(eval-region :wk "Evaluate elisp in region")
+
     "f" '(:ignore t :wk "file")
     "f r" '(recentf :wk "Find recent files")
     "f c" '((lambda () (interactive)
