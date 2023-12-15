@@ -13,6 +13,7 @@
   - [[#reset-default-interface-styling][Reset default interface styling]]
   - [[#theme][Theme]]
   - [[#fonts][Fonts]]
+  - [[#beacon][Beacon]]
 - [[#dired][Dired]]
   - [[#dired-collapse][Dired collapse]]
 - [[#org-mode][Org mode]]
@@ -182,6 +183,15 @@ TODO: Adjust this later
 ;; Does the same thing as 'set-face-attribute default' above, but emacsclient fonts
 ;; are not right unless I also add this method of setting the default font.
 (add-to-list 'default-frame-alist '(font . "JetBrains Mono-12"))
+#+end_src
+
+** Beacon
+Silly, visually pleasing cursor effect that helps you locate the cursor.
+#+begin_src elisp
+(use-package beacon
+  :elpaca t
+  :init
+  (beacon-mode 1))
 #+end_src
 
 
