@@ -13,6 +13,8 @@
   - [[#reset-default-interface-styling][Reset default interface styling]]
   - [[#theme][Theme]]
   - [[#fonts][Fonts]]
+- [[#dired][Dired]]
+  - [[#dired-collapse][Dired collapse]]
 - [[#org-mode][Org mode]]
   - [[#table-of-contents][Table of contents]]
   - [[#org-bullets][Org bullets]]
@@ -180,6 +182,16 @@ TODO: Adjust this later
 ;; Does the same thing as 'set-face-attribute default' above, but emacsclient fonts
 ;; are not right unless I also add this method of setting the default font.
 (add-to-list 'default-frame-alist '(font . "JetBrains Mono-12"))
+#+end_src
+
+
+* Dired
+** Dired collapse
+Mimic how GitHub renders file paths: if there is a chain of directories where each one only has one child, they are concatenated together and shown on the first level in this collapsed form.
+#+begin_src elisp
+(use-package dired-collapse
+  :elpaca t
+  :hook (dired-mode . dired-collapse-mode))
 #+end_src
 
 
