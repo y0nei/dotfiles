@@ -47,7 +47,7 @@
   :elpaca t
   :after evil
   :config
-  (setq evil-collection-mode-list '(dashboard dired ibuffer))
+  (setq evil-collection-mode-list '(dashboard dired help ibuffer))
   (evil-collection-init))
 #+end_src
 
