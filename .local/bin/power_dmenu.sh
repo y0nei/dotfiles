@@ -9,15 +9,15 @@ function usage {
     echo "  --systemd    Adapt the system commands to a systemd based distribution"
 }
 
-if [[ ($* == "--help") ||  $* == "-h" ]]; then
-    usage
-    exit 0
-fi
-
+# Parse command-line options
 while [[ $# -gt 0 ]]; do
     case $1 in
-        --sytemd)
+        --systemd)
         systemd=true
+        ;;
+    -h|--help)
+        usage
+        exit 0
         ;;
     *)
         echo "Invalid option: $1"
@@ -28,6 +28,29 @@ while [[ $# -gt 0 ]]; do
     shift
 done
 
+function handle_power_action {
+    local action="$1"
+
+    # Check if the action is empty
+    if [ -z "$action" ]; then
+        return
+    fi
+
+    if [[ $action == "hibernate" || $action == "suspend" ]]; then
+        # Skip confirmation
+        $provider "$action"
+    else
+        confirm=$(
+            echo -e "Yes, $action\nNo, cancel" |
+            bemenu $dmenu_opts -l 2 -p "Are you sure?"
+        )
+
+        if [[ $confirm == "Yes, $action" ]]; then
+            $provider "$action"
+        fi
+    fi
+}
+
 # NOTE: 'loginctl' is used as a provider where elogind is installed, on systemd
 # based distributions 'loginctl' just controls the systemd login manager.
 if [[ $systemd == true ]]; then
@@ -37,46 +60,28 @@ else
 fi
 
 function powermenu {
-    options="sleep\nshutdown\nreboot\nlogout\ncancel"
-    # NOTE: The 'bemenu' command can be supplemented with rofi, wofi or any
-    # dmenu compatible application launcher.
-    selected=$(echo -e $options | bemenu $dmenu_opts -l 5 -p powermenu)
-    if [[ $selected == "shutdown" ]]; then
-        confirm=$(
-            echo -e "Yes, $selected\nNo, cancel" |
-            bemenu $dmenu_opts -l 2 -p "Are you sure?"
-        )
-        if [[ $confirm == "Yes, $selected" ]]; then
-            $provider poweroff
-        else
+    local options=("sleep" "shutdown" "reboot" "logout" "cancel")
+    local selected=$(printf "%s\n" "${options[@]}" | bemenu $dmenu_opts -l 5 -p powermenu)
+
+    case $selected in
+        "shutdown"|"reboot")
+            handle_power_action "$selected"
+            ;;
+        "sleep")
+            local sleep_method=$(
+                echo -e "hibernate\nsuspend" |
+                bemenu $dmenu_opts -l 2 -p "Choose sleep method"
+            )
+
+            handle_power_action "$sleep_method"
+            ;;
+        "logout")
+            # NOTE: Both providers have the 'terminate-session' option
+            loginctl terminate-session ${XDG_SESSION_ID-}
+            ;;
+        "cancel")
             return
-        fi
-    elif [[ $selected == "reboot" ]]; then
-        confirm=$(
-            echo -e "Yes, $selected\nNo, cancel" |
-            bemenu $dmenu_opts -l 2 -p "Are you sure?"
-        )
-        if [[ $confirm == "Yes, $selected" ]]; then
-            $provider reboot
-        else
-            return
-        fi
-    elif [[ $selected == "sleep" ]]; then
-        confirm=$(
-            echo -e "Hibernate\nSuspend" |
-            bemenu $dmenu_opts -l 2 -p "Chose sleep method"
-        )
-        if [[ $confirm == "Hibernate" ]]; then
-            $provider hibernate
-        elif [[ $confirm == "Suspend" ]]; then
-            $provider suspend
-        else
-            return
-        fi
-    elif [[ $selected == "logout" ]]; then
-        loginctl terminate-session ${XDG_SESSION_ID-}
-    elif [[ $selected == "cancel" ]]; then
-        return
-    fi
+            ;;
+    esac
 }
 powermenu
