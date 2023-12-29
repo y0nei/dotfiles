@@ -1,0 +1,56 @@
+shell = "/bin/zsh"
+
+[scrolling]
+history = 5000
+
+[window]
+dynamic_title = true
+decorations = "none"
+opacity = 0.9
+[window.padding]
+x = 6
+y = 6
+
+[font]
+size = 13.0
+
+[font.bold]
+family = "mononoki Nerd Font"
+style = "Bold"
+
+[font.bold_italic]
+family = "mononoki Nerd Font"
+style = "Bold Italic"
+
+[font.italic]
+family = "mononoki Nerd Font"
+style = "Italic"
+
+[font.normal]
+family = "mononoki Nerd Font"
+style = "Regular"
+
+# OneDark Warm colors
+[colors.bright]
+black = "#404247"
+blue = "#68aee8"
+cyan = "#5fafb9"
+green = "#99bc80"
+magenta = "#c678dd"
+red = "#e16d77"
+white = "#c8ccd4"
+yellow = "#dfbe81"
+
+[colors.normal]
+black = "#191a1c"
+blue = "#68aee8"
+cyan = "#5fafb9"
+green = "#99bc80"
+magenta = "#c678dd"
+red = "#e16d77"
+white = "#8b8d91"
+yellow = "#dfbe81"
+
+[colors.primary]
+background = "#242628"
+foreground = "#c8ccd4"
