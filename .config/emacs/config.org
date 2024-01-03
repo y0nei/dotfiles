@@ -14,6 +14,7 @@
   - [[#fonts][Fonts]]
   - [[#beacon][Beacon]]
 - [[#sane-defaults][Sane defaults]]
+  - [[#minibuffer-escape][Minibuffer Escape]]
 - [[#dired][Dired]]
   - [[#dired-collapse][Dired collapse]]
   - [[#human-readable-sizes][Human readable sizes]]
@@ -198,6 +199,11 @@ Silly, visually pleasing cursor effect that helps you locate the cursor.
 (defalias 'yes-or-no-p 'y-or-n-p)         ;; Answer just 'y' or 'n' instead of full words
 #+end_src
 
+** Minibuffer Escape
+By default, Emacs requires you to hit ESC three times to escape quit the minibuffer.
+#+begin_src elisp
+(global-set-key (kbd "<escape>") 'keyboard-escape-quit)
+#+end_src
 
 * Dired
 ** Dired collapse
