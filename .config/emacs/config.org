@@ -16,6 +16,7 @@
   - [[#beacon][Beacon]]
 - [[#dired][Dired]]
   - [[#dired-collapse][Dired collapse]]
+  - [[#human-readable-sizes][Human readable sizes]]
 - [[#org-mode][Org mode]]
   - [[#table-of-contents][Table of contents]]
   - [[#org-bullets][Org bullets]]
@@ -202,6 +203,11 @@ Mimic how GitHub renders file paths: if there is a chain of directories where ea
 (use-package dired-collapse
   :elpaca t
   :hook (dired-mode . dired-collapse-mode))
+#+end_src
+
+** Human readable sizes
+#+begin_src elisp
+(setq dired-listing-switches "-alh")
 #+end_src
 
 
