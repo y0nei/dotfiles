@@ -10,10 +10,10 @@
   - [[#evil-mode][Evil mode]]
   - [[#keybinds][Keybinds]]
 - [[#visual-tweaks][Visual tweaks]]
-  - [[#reset-default-interface-styling][Reset default interface styling]]
   - [[#theme][Theme]]
   - [[#fonts][Fonts]]
   - [[#beacon][Beacon]]
+- [[#sane-defaults][Sane defaults]]
 - [[#dired][Dired]]
   - [[#dired-collapse][Dired collapse]]
   - [[#human-readable-sizes][Human readable sizes]]
@@ -129,20 +129,6 @@
 
 
 * Visual tweaks
-** Reset default interface styling
-*** Disable menubar and scrollbars
-#+begin_src elisp
-(menu-bar-mode -1)
-(tool-bar-mode -1)
-(scroll-bar-mode -1)
-#+end_src
-
-*** Display line numbers and truncated lines
-#+begin_src elisp
-(global-display-line-numbers-mode 1)
-(global-visual-line-mode t)
-#+end_src
-
 ** Theme
 #+begin_src elisp
 (use-package doom-themes
@@ -193,6 +179,22 @@ Silly, visually pleasing cursor effect that helps you locate the cursor.
   :elpaca t
   :init
   (beacon-mode 1))
+#+end_src
+
+
+* Sane defaults
+#+begin_src elisp
+(delete-selection-mode 1)             ;; Delete selected text by typing
+(menu-bar-mode -1)                    ;; Disable menu bar
+(tool-bar-mode -1)                    ;; Disable tool bar
+(scroll-bar-mode -1)                  ;; Disable scroll bar
+(global-display-line-numbers-mode 1)  ;; Display line numbers
+(global-visual-line-mode t)           ;; Wrap lines by default
+(global-auto-revert-mode t)           ;; Automatically show changes if the file has changed
+
+(setq org-edit-src-content-indentation 0  ;; Org src block automatic indent from 2 to 0
+      delete-by-moving-to-trash t)        ;; Move files to trash when deleting
+(defalias 'yes-or-no-p 'y-or-n-p)         ;; Answer just 'y' or 'n' instead of full words
 #+end_src
 
 
