@@ -18,6 +18,7 @@
   - [[#dired-collapse][Dired collapse]]
   - [[#human-readable-sizes][Human readable sizes]]
 - [[#org-mode][Org mode]]
+  - [[#mode-specific-keybindings][Mode specific keybindings]]
   - [[#table-of-contents][Table of contents]]
   - [[#org-bullets][Org bullets]]
   - [[#wysiwyg][WYSIWYG]]
@@ -214,6 +215,13 @@ Mimic how GitHub renders file paths: if there is a chain of directories where ea
 
 
 * Org mode
+** Mode specific keybindings
+#+begin_src elisp
+(add-hook 'org-mode-hook (lambda ()
+  (local-set-key (kbd "<tab>") 'org-cycle))  ;; Fold headings
+)
+#+end_src
+
 ** Table of contents
 #+begin_src elisp
 (use-package toc-org
