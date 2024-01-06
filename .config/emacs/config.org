@@ -81,11 +81,16 @@
     "b r" '(revert-buffer :wk "Reload buffer")
 
     "w" '(:ignore t :wk "window")
+    "w c" '(delete-window :wk "Close current window")
+    "w n" '(evil-window-vnew :wk "New window")
+    "w s" '(evil-window-split :wk "Horizontal split")
+    "w v" '(evil-window-vsplit :wk "Vertical split")
+    ;; Window navigation
     "w h" '(evil-window-left :wk "Window left")
     "w j" '(evil-window-down :wk "Window down")
     "w k" '(evil-window-up :wk "Window up")
     "w l" '(evil-window-right :wk "Window right")
-    "w c" '(delete-window :wk "Close current window")
+    "w w" '(evil-window-next :wk "Goto next window")
     ;; Window movement
     "w H" '(buf-move-left :wk "Buffer move left")
     "w J" '(buf-move-down :wk "Buffer move down")
