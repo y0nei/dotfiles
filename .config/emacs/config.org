@@ -34,6 +34,7 @@
 ** Source the scripts
 #+begin_src elisp
 (require 'elpaca-bootstrap)  ;; Elpaca package manager setup
+(require 'buffer-move)       ;; Move splits with ease
 #+end_src
 
 ** Evil mode
@@ -85,6 +86,11 @@
     "w k" '(evil-window-up :wk "Window up")
     "w l" '(evil-window-right :wk "Window right")
     "w c" '(delete-window :wk "Close current window")
+    ;; Window movement
+    "w H" '(buf-move-left :wk "Buffer move left")
+    "w J" '(buf-move-down :wk "Buffer move down")
+    "w K" '(buf-move-up :wk "Buffer move up")
+    "w L" '(buf-move-right :wk "Buffer move right")
 
     "e v" '(:ignore t :wk "evaluate")
     "e v b" '(eval-buffer :wk "Evaluate elisp in buffer")
