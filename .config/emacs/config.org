@@ -13,7 +13,9 @@
   - [[#theme][Theme]]
   - [[#fonts][Fonts]]
   - [[#beacon][Beacon]]
+  - [[#all-the-icons][All the icons]]
 - [[#sane-defaults][Sane defaults]]
+- [[#dashboard][Dashboard]]
 - [[#dired][Dired]]
   - [[#dired-collapse][Dired collapse]]
   - [[#human-readable-sizes][Human readable sizes]]
@@ -197,6 +199,13 @@ Silly, visually pleasing cursor effect that helps you locate the cursor.
   (beacon-mode 1))
 #+end_src
 
+** All the icons
+#+begin_src elisp
+(use-package all-the-icons
+  :elpaca t
+  :if (display-graphic-p))
+#+end_src
+
 
 * Sane defaults
 #+begin_src elisp
@@ -213,6 +222,23 @@ Silly, visually pleasing cursor effect that helps you locate the cursor.
 (defalias 'yes-or-no-p 'y-or-n-p)         ;; Answer just 'y' or 'n' instead of full words
 #+end_src
 
+
+* Dashboard
+#+begin_src elisp
+(use-package dashboard
+  :elpaca t
+  :config
+  (add-hook 'elpaca-after-init-hook #'dashboard-insert-startupify-lists)
+  (add-hook 'elpaca-after-init-hook #'dashboard-initialize)
+  (dashboard-setup-startup-hook)
+
+  ;; Show dashboard in frames created by 'emacsclient -c'.
+  (setq initial-buffer-choice (lambda () (get-buffer-create "*dashboard*")))
+  (setq dashboard-startup-banner 'logo
+        dashboard-center-content t
+        dashboard-icon-type 'all-the-icons
+        dashboard-set-file-icons t))
+#+end_src
 
 * Dired
 ** Dired collapse
