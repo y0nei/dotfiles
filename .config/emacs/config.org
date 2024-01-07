@@ -360,8 +360,8 @@ Disable WYSIWYG while mousing over in insert mode for easier editing.
   :elpaca t
   :hook (org-mode . visual-fill-column-mode)
   :config
-  (setq visual-fill-column-width 100
-        visual-fill-column-center-text t))
+  (setq-default visual-fill-column-width 100
+                visual-fill-column-center-text t))
 #+end_src
 
 *** Heading sizes
