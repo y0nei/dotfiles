@@ -292,7 +292,7 @@ Mimic how GitHub renders file paths: if there is a chain of directories where ea
 (add-hook 'org-mode-hook 'org-indent-mode)
 (use-package org-bullets
   :elpaca t
-  :hook (org-mode . (lambda () (org-bullets-mode 1))))
+  :hook (org-mode . org-bullets-mode))
 #+end_src
 
 ** Org tempo
