@@ -13,7 +13,7 @@
   - [[#theme][Theme]]
   - [[#fonts][Fonts]]
   - [[#beacon][Beacon]]
-  - [[#all-the-icons][All the icons]]
+  - [[#icons][Icons]]
   - [[#modeline][Modeline]]
 - [[#sane-defaults][Sane defaults]]
 - [[#dashboard][Dashboard]]
@@ -200,11 +200,16 @@ Silly, visually pleasing cursor effect that helps you locate the cursor.
   (beacon-mode 1))
 #+end_src
 
-** All the icons
+** Icons
 #+begin_src elisp
 (use-package all-the-icons
   :elpaca t
   :if (display-graphic-p))
+
+(use-package nerd-icons
+  :elpaca t)
+#+end_src
+
 ** Modeline
 #+begin_src elisp
 (use-package doom-modeline
