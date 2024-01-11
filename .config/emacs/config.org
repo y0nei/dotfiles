@@ -22,6 +22,7 @@
   - [[#human-readable-sizes][Human readable sizes]]
 - [[#org-mode][Org mode]]
   - [[#mode-specific-keybindings][Mode specific keybindings]]
+  - [[#fix-source-block-indentation][Fix source block indentation]]
   - [[#table-of-contents][Table of contents]]
   - [[#org-bullets][Org bullets]]
   - [[#org-tempo][Org tempo]]
@@ -288,6 +289,25 @@ Mimic how GitHub renders file paths: if there is a chain of directories where ea
 (add-hook 'org-mode-hook (lambda ()
   (local-set-key (kbd "<tab>") 'org-cycle))  ;; Fold headings
 )
+** Fix source block indentation
+Taken from Doom Emacs.
+#+begin_src elisp
+;;;###autoload
+(defun +org/return ()
+  "Call `org-return' then indent (if `electric-indent-mode' is on)."
+  (interactive)
+  (org-return electric-indent-mode))
+
+(defun yn/org-src-fix-newline-and-indent-a (&optional indent _arg _interactive)
+  "Mimic `newline-and-indent' in src blocks w/ lang-appropriate indentation."
+  (when (and indent
+             org-src-tab-acts-natively
+             (org-in-src-block-p t))
+    (save-window-excursion
+      (org-babel-do-in-edit-buffer
+       (call-interactively #'indent-for-tab-command)))))
+
+(advice-add 'org-return :after #'yn/org-src-fix-newline-and-indent-a)
 #+end_src
 
 ** Table of contents
