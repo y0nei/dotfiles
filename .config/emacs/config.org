@@ -21,7 +21,6 @@
   - [[#dired-collapse][Dired collapse]]
   - [[#human-readable-sizes][Human readable sizes]]
 - [[#org-mode][Org mode]]
-  - [[#mode-specific-keybindings][Mode specific keybindings]]
   - [[#fix-source-block-indentation][Fix source block indentation]]
   - [[#table-of-contents][Table of contents]]
   - [[#org-bullets][Org bullets]]
@@ -284,11 +283,22 @@ Mimic how GitHub renders file paths: if there is a chain of directories where ea
 
 
 * Org mode
-** Mode specific keybindings
 #+begin_src elisp
-(add-hook 'org-mode-hook (lambda ()
-  (local-set-key (kbd "<tab>") 'org-cycle))  ;; Fold headings
-)
+(use-package org
+  :elpaca nil
+  :defer t
+  :general
+  (:keymaps 'org-mode-map
+   :states '(insert emacs)
+   "RET" '+org/return)
+  (:keymaps 'org-mode-map
+   :states 'normal 
+   "RET" 'org-return
+   (kbd "<tab>") 'org-cycle)
+  :custom
+  (org-ellipsis " ▼ "))  ;; Nice folding character
+#+end_src
+
 ** Fix source block indentation
 Taken from Doom Emacs.
 #+begin_src elisp
