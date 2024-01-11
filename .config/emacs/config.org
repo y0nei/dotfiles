@@ -62,6 +62,7 @@
 #+begin_src elisp
 (use-package general
   :elpaca t
+  :demand t
   :config
   (general-evil-setup)
 
@@ -120,6 +121,9 @@
                 (load-file user-init-file)
                 (ignore (elpaca-process-queues)))
               :wk "Reload emacs config")))
+
+;; IMPORTANT: Since `elpaca' installs and activates packages asynchronously, we need to load general early, otherwise the :general keyword in the use-package blocks won’t work. 
+(elpaca-wait)
 
 ;; Exit the minibuffer by pressing 'ESC' 1 time instead of 3
 (global-set-key (kbd "<escape>") 'keyboard-escape-quit)
