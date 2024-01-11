@@ -288,6 +288,7 @@ Mimic how GitHub renders file paths: if there is a chain of directories where ea
 (use-package org
   :elpaca nil
   :defer t
+  :hook (org-mode . org-indent-mode)
   :general
   (:keymaps 'org-mode-map
    :states '(insert emacs)
@@ -297,7 +298,9 @@ Mimic how GitHub renders file paths: if there is a chain of directories where ea
    "RET" 'org-return
    (kbd "<tab>") 'org-cycle)
   :custom
-  (org-ellipsis " ▼ "))  ;; Nice folding character
+  (org-ellipsis " ▼ ")
+  (org-edit-src-content-indentation 0)  ;; Org src block automatic indent from 2 to 0
+  (org-src-tab-acts-natively t))
 #+end_src
 
 ** Fix source block indentation
@@ -406,11 +409,6 @@ Disable WYSIWYG while mousing over in insert mode for easier editing.
   `((,(concat "^[[:space:]]\\{" (number-to-string
                                 (* 3 (+ 2 org-list-indent-offset))) "\\}\\(-\\) ")
     (0 (prog1 () (compose-region (match-beginning 1) (match-end 1) "▹"))))))
-#+end_src
-
-*** Nice folding characters
-#+begin_src elisp
-(setq org-ellipsis " ▼ ")
 #+end_src
 
 *** Center Org buffers for readability
