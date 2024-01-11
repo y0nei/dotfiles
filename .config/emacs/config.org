@@ -200,9 +200,9 @@ Silly, visually pleasing cursor effect that helps you locate the cursor.
 #+begin_src elisp
 (use-package beacon
   :elpaca t
-  :init
-  (setq beacon-blink-when-window-scrolls nil)
-  (beacon-mode 1))
+  :init (beacon-mode 1)
+  :config
+  (setq beacon-blink-when-window-scrolls nil))
 #+end_src
 
 ** Icons
@@ -221,8 +221,8 @@ Silly, visually pleasing cursor effect that helps you locate the cursor.
   :ensure t
   :init (doom-modeline-mode 1)
   :config
-  (setq doom-modeline-buffer-file-name-style 'truncate-nil)
-  (setq doom-modeline-total-line-number t)
+  (setq doom-modeline-buffer-file-name-style 'truncate-nil
+        doom-modeline-total-line-number t)
   (display-battery-mode 1)
   (column-number-mode 1))
 #+end_src
@@ -238,16 +238,14 @@ Silly, visually pleasing cursor effect that helps you locate the cursor.
 (global-visual-line-mode t)           ;; Wrap lines by default
 (global-auto-revert-mode t)           ;; Automatically show changes if the file has changed
 
-(setq org-edit-src-content-indentation 0  ;; Org src block automatic indent from 2 to 0
-      delete-by-moving-to-trash t)        ;; Move files to trash when deleting
-(defalias 'yes-or-no-p 'y-or-n-p)         ;; Answer just 'y' or 'n' instead of full words
+(setq delete-by-moving-to-trash t)    ;; Move files to trash when deleting
+(defalias 'yes-or-no-p 'y-or-n-p)     ;; Answer just 'y' or 'n' instead of full words
 
 ;; Fix tabs
 (setq-default indent-tabs-mode nil  ;; Tabs to spaces
               tab-width 4)
 ;; Only indent the line if at BOL or in a line's indentation. Otherwise insert a "real" TAB.
 (setq-default tab-always-indent nil)
-(setq org-src-tab-acts-natively t)
 #+end_src
 
 
@@ -336,8 +334,6 @@ Taken from Doom Emacs.
 #+begin_src elisp
 (use-package org-bullets
   :elpaca t
-  :preface
-  (add-hook 'org-mode-hook 'org-indent-mode)
   :hook (org-mode . org-bullets-mode))
 #+end_src
 
