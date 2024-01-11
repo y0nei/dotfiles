@@ -201,6 +201,7 @@ Silly, visually pleasing cursor effect that helps you locate the cursor.
 (use-package beacon
   :elpaca t
   :init
+  (setq beacon-blink-when-window-scrolls nil)
   (beacon-mode 1))
 #+end_src
 
