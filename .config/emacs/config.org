@@ -240,6 +240,13 @@ Silly, visually pleasing cursor effect that helps you locate the cursor.
 (setq org-edit-src-content-indentation 0  ;; Org src block automatic indent from 2 to 0
       delete-by-moving-to-trash t)        ;; Move files to trash when deleting
 (defalias 'yes-or-no-p 'y-or-n-p)         ;; Answer just 'y' or 'n' instead of full words
+
+;; Fix tabs
+(setq-default indent-tabs-mode nil  ;; Tabs to spaces
+              tab-width 4)
+;; Only indent the line if at BOL or in a line's indentation. Otherwise insert a "real" TAB.
+(setq-default tab-always-indent nil)
+(setq org-src-tab-acts-natively t)
 #+end_src
 
 
