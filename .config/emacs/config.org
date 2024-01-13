@@ -20,6 +20,7 @@
 - [[#dired][Dired]]
   - [[#dired-collapse][Dired collapse]]
   - [[#human-readable-sizes][Human readable sizes]]
+  - [[#sensible-directory-navigation][Sensible directory navigation]]
 - [[#org-mode][Org mode]]
   - [[#fix-source-block-indentation][Fix source block indentation]]
   - [[#table-of-contents][Table of contents]]
@@ -285,6 +286,17 @@ Mimic how GitHub renders file paths: if there is a chain of directories where ea
 (setq dired-listing-switches "-alh --group-directories-first")
 #+end_src
 
+** Sensible directory navigation
+This package provides a way to reuse the current dired buffer to visit another directory (rather than creating a new buffer for the new directory).
+#+begin_src elisp
+(use-package dired-single
+  :elpaca t
+  :general
+  (:keymaps 'dired-mode-map
+   [remap dired-find-file] #'dired-single-buffer
+   [remap dired-mouse-find-file-other-window] #'dired-single-buffer-mouse
+   [remap dired-up-directory] #'dired-single-up-directory))
+#+end_src
 
 * Org mode
 #+begin_src elisp
