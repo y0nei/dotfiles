@@ -19,7 +19,6 @@
 - [[#dashboard][Dashboard]]
 - [[#dired][Dired]]
   - [[#dired-collapse][Dired collapse]]
-  - [[#human-readable-sizes][Human readable sizes]]
   - [[#sensible-directory-navigation][Sensible directory navigation]]
 - [[#org-mode][Org mode]]
   - [[#fix-source-block-indentation][Fix source block indentation]]
@@ -273,17 +272,19 @@ Silly, visually pleasing cursor effect that helps you locate the cursor.
 #+end_src
 
 * Dired
+#+begin_src elisp
+(use-package dired
+  :elpaca nil
+  :custom
+  (dired-listing-switches "-alh --group-directories-first"))
+#+end_src
+
 ** Dired collapse
 Mimic how GitHub renders file paths: if there is a chain of directories where each one only has one child, they are concatenated together and shown on the first level in this collapsed form.
 #+begin_src elisp
 (use-package dired-collapse
   :elpaca t
   :hook (dired-mode . dired-collapse-mode))
-#+end_src
-
-** Human readable sizes
-#+begin_src elisp
-(setq dired-listing-switches "-alh --group-directories-first")
 #+end_src
 
 ** Sensible directory navigation
