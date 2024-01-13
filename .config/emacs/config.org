@@ -235,11 +235,13 @@ Silly, visually pleasing cursor effect that helps you locate the cursor.
 #+begin_src elisp
 (delete-selection-mode 1)             ;; Delete selected text by typing
 (menu-bar-mode -1)                    ;; Disable menu bar
-(tool-bar-mode -1)                    ;; Disable tool bar
-(scroll-bar-mode -1)                  ;; Disable scroll bar
 (global-display-line-numbers-mode 1)  ;; Display line numbers
 (global-visual-line-mode t)           ;; Wrap lines by default
 (global-auto-revert-mode t)           ;; Automatically show changes if the file has changed
+
+(if (display-graphic-p)
+    (progn (tool-bar-mode -1)
+           (scroll-bar-mode -1)))
 
 (setq delete-by-moving-to-trash t)    ;; Move files to trash when deleting
 (defalias 'yes-or-no-p 'y-or-n-p)     ;; Answer just 'y' or 'n' instead of full words
@@ -280,7 +282,7 @@ Mimic how GitHub renders file paths: if there is a chain of directories where ea
 
 ** Human readable sizes
 #+begin_src elisp
-(setq dired-listing-switches "-alh")
+(setq dired-listing-switches "-alh --group-directories-first")
 #+end_src
 
 
@@ -301,7 +303,8 @@ Mimic how GitHub renders file paths: if there is a chain of directories where ea
   :custom
   (org-ellipsis " ▼ ")
   (org-edit-src-content-indentation 0)  ;; Org src block automatic indent from 2 to 0
-  (org-src-tab-acts-natively t))
+  (org-src-tab-acts-natively t)
+  (org-return-follows-link t))
 #+end_src
 
 ** Fix source block indentation
