@@ -22,6 +22,7 @@
 - [[#dired][Dired]]
   - [[#dired-collapse][Dired collapse]]
   - [[#sensible-directory-navigation][Sensible directory navigation]]
+  - [[#colors][Colors]]
 - [[#org-mode][Org mode]]
   - [[#fix-source-block-indentation][Fix source block indentation]]
   - [[#table-of-contents][Table of contents]]
@@ -344,6 +345,13 @@ This package provides a way to reuse the current dired buffer to visit another d
    [remap dired-find-file] #'dired-single-buffer
    [remap dired-mouse-find-file-other-window] #'dired-single-buffer-mouse
    [remap dired-up-directory] #'dired-single-up-directory))
+#+end_src
+
+** Colors
+#+begin_src elisp
+(use-package diredfl
+  :elpaca t
+  :hook (dired-mode . diredfl-mode))
 #+end_src
 
 * Org mode
