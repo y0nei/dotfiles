@@ -52,7 +52,9 @@
   :elpaca t
   :init
   (setq evil-want-keybinding nil)
-  (evil-mode))
+  (evil-mode)
+  :config
+  (evil-set-undo-system 'undo-redo))
 
 ;; Evil mode functionality for various other tools
 (use-package evil-collection
