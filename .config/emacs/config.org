@@ -16,6 +16,7 @@
   - [[#icons][Icons]]
   - [[#modeline][Modeline]]
 - [[#sane-defaults][Sane defaults]]
+- [[#improved-minibuffer-completion][Improved minibuffer completion]]
 - [[#dashboard][Dashboard]]
 - [[#dired][Dired]]
   - [[#dired-collapse][Dired collapse]]
@@ -253,6 +254,30 @@ Silly, visually pleasing cursor effect that helps you locate the cursor.
 (setq-default tab-always-indent nil)
 #+end_src
 
+* Improved minibuffer completion
+There are many choices, we go with vertico & marginalia instead of counsel, ivy & ivy rich.
+#+begin_src elisp
+(use-package vertico
+  :elpaca t
+  :init (vertico-mode)
+  :general
+  (:keymaps 'vertico-map
+   "C-j" 'vertico-next
+   "C-k" 'vertico-previous)
+  :custom
+  (vertico-cycle t))  ;; Wrap around when reaching end of list
+
+;; Persist history over Emacs restarts. Vertico sorts by history position.
+(use-package savehist
+  :elpaca nil
+  :init
+  (savehist-mode))
+
+(use-package marginalia
+  :elpaca t
+  :after vertico
+  :init (marginalia-mode))
+#+end_src
 
 * Dashboard
 #+begin_src elisp
