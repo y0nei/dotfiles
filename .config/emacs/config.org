@@ -278,6 +278,11 @@ There are many choices, we go with vertico & marginalia instead of counsel, ivy 
   :elpaca t
   :after vertico
   :init (marginalia-mode))
+
+(use-package vertico-prescient
+  :elpaca t
+  :after vertico
+  :init (vertico-prescient-mode))
 #+end_src
 
 * Helpful
