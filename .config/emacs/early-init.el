@@ -27,3 +27,6 @@
                              (float-time
                               (time-subtract after-init-time before-init-time)))
                      gcs-done)))
+
+;; Remove flashbang when loading Emacs
+(add-to-list 'default-frame-alist '(background-color . "#17191a"))
