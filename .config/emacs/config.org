@@ -17,6 +17,7 @@
   - [[#modeline][Modeline]]
 - [[#sane-defaults][Sane defaults]]
 - [[#improved-minibuffer-completion][Improved minibuffer completion]]
+- [[#helpful][Helpful]]
 - [[#dashboard][Dashboard]]
 - [[#dired][Dired]]
   - [[#dired-collapse][Dired collapse]]
@@ -277,6 +278,20 @@ There are many choices, we go with vertico & marginalia instead of counsel, ivy 
   :elpaca t
   :after vertico
   :init (marginalia-mode))
+#+end_src
+
+* Helpful
+An alternative to the built-in Emacs help that provides much more contextual information.
+#+begin_src elisp
+(use-package helpful
+  :elpaca t
+  :after evil
+  :general
+  ([remap describe-function] 'helpful-callable
+   [remap describe-command] 'helpful-command
+   [remap describe-variable] 'helpful-variable
+   [remap describe-symbol] 'helpful-symbol
+   [remap describe-key] 'helpful-key))
 #+end_src
 
 * Dashboard
