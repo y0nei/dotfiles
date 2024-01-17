@@ -16,7 +16,6 @@
   - [[#icons][Icons]]
   - [[#modeline][Modeline]]
 - [[#sane-defaults][Sane defaults]]
-- [[#improved-minibuffer-completion][Improved minibuffer completion]]
 - [[#helpful][Helpful]]
 - [[#dashboard][Dashboard]]
 - [[#dired][Dired]]
@@ -30,6 +29,13 @@
   - [[#org-tempo][Org tempo]]
   - [[#wysiwyg][WYSIWYG]]
   - [[#visual-tweaks-1][Visual tweaks]]
+- [[#tree-sitter][Tree Sitter]]
+  - [[#builtin-solution][Builtin solution]]
+- [[#prescient][Prescient]]
+- [[#auto-completion][Auto completion]]
+  - [[#minibuffer-completion][Minibuffer completion]]
+  - [[#in-buffer-completion][In-buffer completion]]
+  - [[#code-completion-lsp][Code completion (LSP)]]
 - [[#languages][Languages]]
   - [[#general-enhancments][General enhancments]]
   - [[#elisp][Elisp]]
@@ -258,36 +264,6 @@ Silly, visually pleasing cursor effect that helps you locate the cursor.
 (setq-default tab-always-indent nil)
 #+end_src
 
-* Improved minibuffer completion
-There are many choices, we go with vertico & marginalia instead of counsel, ivy & ivy rich.
-#+begin_src elisp
-(use-package vertico
-  :elpaca t
-  :init (vertico-mode)
-  :general
-  (:keymaps 'vertico-map
-   "C-j" 'vertico-next
-   "C-k" 'vertico-previous)
-  :custom
-  (vertico-cycle t))  ;; Wrap around when reaching end of list
-
-;; Persist history over Emacs restarts. Vertico sorts by history position.
-(use-package savehist
-  :elpaca nil
-  :init
-  (savehist-mode))
-
-(use-package marginalia
-  :elpaca t
-  :after vertico
-  :init (marginalia-mode))
-
-(use-package vertico-prescient
-  :elpaca t
-  :after vertico
-  :init (vertico-prescient-mode))
-#+end_src
-
 * Helpful
 An alternative to the built-in Emacs help that provides much more contextual information.
 #+begin_src elisp
@@ -500,6 +476,187 @@ Disable WYSIWYG while mousing over in insert mode for easier editing.
   '(org-level-4 ((t (:inherit outline-4 :height 1.05))))
   '(org-document-title ((t (:height 1.75 :underline nil)))))
 #+end_src
+
+* Tree Sitter
+#+begin_src elisp
+(use-package tree-sitter
+  :elpaca t
+  :hook ((python-mode . tree-sitter-mode)
+         (tree-sitter-after-on . tree-sitter-hl-mode)))
+
+(use-package tree-sitter-langs
+  :elpaca t
+  :after tree-sitter)
+#+end_src
+
+** Builtin solution
+:PROPERTIES:
+:VISIBILITY: folded
+:END:
+The reason we don't use the built-in treesitter implementation is that it lacks proper syntax highlighting based on Tree-sitter's syntax tree. Its really upsetting but it is what it is.
+#+begin_src elisp
+(use-package treesit :disabled
+  :elpaca nil
+  :preface
+  (defun yn/treesit-install-all-languages ()
+    "Install all languages specified by `treesit-language-source-alist'."
+    (interactive)
+    (let ((languages (mapcar 'car treesit-language-source-alist)))
+      (dolist (lang languages)
+        (treesit-install-language-grammar lang)
+        (message "`%s' parser was installed." lang)
+        (sit-for 0.75))))
+  :init
+  (setq treesit-language-source-alist
+    '((bash "https://github.com/tree-sitter/tree-sitter-bash")
+      (make "https://github.com/alemuller/tree-sitter-make")
+      (cmake "https://github.com/uyha/tree-sitter-cmake")
+      (css "https://github.com/tree-sitter/tree-sitter-css")
+      (html "https://github.com/tree-sitter/tree-sitter-html")
+      (javascript "https://github.com/tree-sitter/tree-sitter-javascript" "master" "src")
+      (typescript "https://github.com/tree-sitter/tree-sitter-typescript" "master" "typescript/src")
+      (go "https://github.com/tree-sitter/tree-sitter-go")
+      (python "https://github.com/tree-sitter/tree-sitter-python")
+      (markdown "https://github.com/ikatyang/tree-sitter-markdown")
+      (json "https://github.com/tree-sitter/tree-sitter-json")
+      (toml "https://github.com/tree-sitter/tree-sitter-toml")
+      (yaml "https://github.com/ikatyang/tree-sitter-yaml")))
+  :config
+  (setq major-mode-remap-alist
+    '((python-mode . python-ts-mode))))
+#+end_src
+
+* Prescient
+#+begin_src elisp
+(use-package prescient
+  :elpaca t
+  :config
+  (prescient-persist-mode 1))
+#+end_src
+
+* Auto completion
+** Minibuffer completion
+There are many choices, we go with vertico & marginalia instead of counsel, ivy & ivy rich.
+#+begin_src elisp
+(use-package vertico
+  :elpaca t
+  :init (vertico-mode)
+  :general
+  (:keymaps 'vertico-map
+   "C-j" 'vertico-next
+   "C-k" 'vertico-previous)
+  :custom
+  (vertico-cycle t))  ;; Wrap around when reaching end of list
+
+;; Persist history over Emacs restarts. Vertico sorts by history position.
+(use-package savehist
+  :elpaca nil
+  :init
+  (savehist-mode))
+
+(use-package marginalia
+  :elpaca t
+  :after vertico
+  :init (marginalia-mode))
+
+(use-package vertico-prescient
+  :elpaca t
+  :after vertico
+  :init (vertico-prescient-mode))
+#+end_src
+
+** In-buffer completion
+*** Orderless
+Completion style for matching regexps in any order
+#+begin_src elisp
+(use-package orderless
+  :elpaca t
+  :init
+  (setq completion-styles '(substring orderless flex)
+        completion-category-defaults nil
+        completion-category-overrides '((file (styles . (partial-completion)))
+                                        (eglot (styles . (orderless flex))))))
+#+end_src
+
+*** Corfu
+#+begin_src elisp
+(use-package corfu
+  :elpaca t
+  :after eglot
+  :hook (corfu-mode . corfu-popupinfo-mode)  ;; Enable info popups
+  :init (global-corfu-mode)
+  :general
+  (:keymaps 'corfu-map
+	 "<escape>" 'corfu-quit
+	 "<return>" 'corfu-insert
+   "C-j" 'corfu-next
+   "C-k" 'corfu-previous
+	 (kbd "<tab>") 'corfu-next
+	 (kbd "<backtab>") 'corfu-previous)
+  :custom
+  ;(tab-always-indent 'complete)  ;; Causes buggy python completion
+  (corfu-auto t) ;; Enable auto-completion
+  (corfu-cycle t) ;; Enable cycling
+  (completion-cycle-threshold 3)
+  (corfu-auto-prefix 2) ;; Set the minimum prefix for completion
+  (corfu-auto-delay 0.0) ;; Disable delay for completions
+  (corfu-preselect 'first)
+  (corfu-quit-at-boundary 'separator)
+  (corfu-popupinfo-delay '(0.25 . 0.1)) ;; Don't show help popup immediately
+  (eldoc-echo-area-use-multiline-p nil) ;; Don't show documentation in minibuffer
+  (corfu-separator ?\s) ;; Necessary for use with orderless
+  (corfu-popupinfo-hide nil) ;; Don't hide the popup when candidates switch
+  (corfu-bar-width 1) ;; Scroll bar width
+  (corfu-scroll-margin 3))
+
+(use-package corfu-history
+  :hook (corfu-mode . corfu-history-mode)
+  :config
+  (unless (bound-and-true-p savehist-mode)
+    (savehist-mode 1))
+  (add-to-list 'savehist-additional-variables 'corfu-history))
+
+(use-package kind-icon
+  :elpaca t
+  :if (and (display-graphic-p) (image-type-available-p 'svg))
+  :after corfu
+  :config
+  (add-to-list 'corfu-margin-formatters #'kind-icon-margin-formatter))
+
+(use-package corfu-prescient
+  :elpaca t
+  :hook (corfu-mode . corfu-prescient-mode))
+#+end_src
+
+*** Cape
+Completion at point extensions
+#+begin_src elisp
+(use-package cape
+  :elpaca t
+  :after corfu
+  :init
+  ;(add-to-list 'completion-at-point-functions #'cape-dabbrev)
+  (add-to-list 'completion-at-point-functions #'cape-file)
+  (add-to-list 'completion-at-point-functions #'cape-elisp-block)
+  (add-to-list 'completion-at-point-functions #'cape-keyword))
+#+end_src
+
+
+** Code completion (LSP)
+*** Eglot
+#+begin_src elisp
+(use-package eglot
+  :elpaca nil
+  :custom-face
+  (eglot-highlight-symbol-face ((t (:underline t :weight bold)))) 
+  :hook ((python-mode emacs-lisp-mode) . eglot-ensure)
+  :general
+  (:keymaps 'eglot-mode-map
+   :prefix "SPC"
+   :states '(normal emacs)
+   "e p" 'eldoc-box-eglot-help-at-point))
+#+end_src
+
 
 * Languages
 ** General enhancments
