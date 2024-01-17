@@ -39,6 +39,7 @@
 - [[#languages][Languages]]
   - [[#general-enhancments][General enhancments]]
   - [[#elisp][Elisp]]
+  - [[#python][Python]]
 
 * Important stuff to load first
 ** Add the scripts directory to path
@@ -610,6 +611,7 @@ Completion style for matching regexps in any order
   (corfu-scroll-margin 3))
 
 (use-package corfu-history
+  :elpaca nil
   :hook (corfu-mode . corfu-history-mode)
   :config
   (unless (bound-and-true-p savehist-mode)
@@ -654,7 +656,15 @@ Completion at point extensions
   (:keymaps 'eglot-mode-map
    :prefix "SPC"
    :states '(normal emacs)
-   "e p" 'eldoc-box-eglot-help-at-point))
+   "e p" 'eldoc-box-eglot-help-at-point)
+  :config
+  (defun yn/eglot-reconnect ()
+    "Helper function to reconnect to an eglot server interactively."
+    (interactive)
+    (let ((current-server (eglot-current-server)))
+      (call-interactively
+       (if (and current-server (jsonrpc-running-p current-server))
+           #'eglot-reconnect #'eglot)))))
 #+end_src
 
 
@@ -1004,5 +1014,56 @@ Adapted from URL `https://www.reddit.com/r/emacs/comments/d7x7x8/finally_fixing_
               (normal-indent))))))
 
 (advice-add #'calculate-lisp-indent :override #'yn/elisp--calculate-lisp-indent-a)
+#+end_src
+
+
+** Python
+*** Virtual environment
+#+begin_src elisp
+(use-package pyvenv
+  :elpaca t
+  :hook (python-mode . pyvenv-mode))
+#+end_src
+
+*** Poetry
+#+begin_src elisp
+;; FIXME: Transient complains about outdated seq version when installing poetry
+;; https://github.com/progfolio/elpaca/issues/216
+(defun +elpaca-unload-seq (e)
+  (and (featurep 'seq) (unload-feature 'seq t))
+  (elpaca--continue-build e))
+
+(defun +elpaca-seq-build-steps ()
+  (append (butlast (if (file-exists-p (expand-file-name "seq" elpaca-builds-directory))
+                       elpaca--pre-built-steps elpaca-build-steps))
+          (list '+elpaca-unload-seq 'elpaca--activate-package)))
+
+(use-package seq :elpaca `(seq :build ,(+elpaca-seq-build-steps)))
+
+(use-package poetry
+  :elpaca t
+  :after python pyvenv
+  :hook (pyvenv-mode . poetry-tracking-mode)
+  :preface
+  ;; https://github.com/cybniv/poetry.el/issues/39#issuecomment-1259055166
+  (defun yn/poetry-reload-venv ()
+    "Manually update the Poetry virtual environment"
+    (interactive)
+    (pyvenv-deactivate)
+    ;; Reset internal poetry configs to trigger a reload of the current project
+    (setq poetry-project-venv nil
+          poetry-project-root nil
+          poetry-project-name nil
+          poetry-saved-venv nil)
+    ;; Re-deduce our project directory and venv, and activate it.
+    (poetry-venv-workon)
+    (yn/eglot-reconnect)) ;; Reload language server to use the new venv.
+  :custom
+  (poetry-tracking-strategy 'switch-buffer)
+  :general
+  (:keymaps 'python-mode-map
+   :states '(normal emacs)
+   :prefix "SPC"
+   "p u" '(yn/poetry-reload-venv :wk "Reload Poetry virtual environment")))
 #+end_src
 
