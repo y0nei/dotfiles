@@ -564,6 +564,17 @@ There are many choices, we go with vertico & marginalia instead of counsel, ivy 
   :elpaca t
   :after vertico
   :init (vertico-prescient-mode))
+
+;; Center minibuffer on screen, similar to telescope on nvim
+;; NOTE: The `mini-frame' package allows more control, test later
+(use-package vertico-posframe
+  :elpaca t
+  :after vertico
+  :init (vertico-mode)
+  :config
+  (setq vertico-posframe-parameters
+        '((left-fringe . 8)
+          (right-fringe . 8))))
 #+end_src
 
 ** In-buffer completion
