@@ -40,8 +40,15 @@ if [ -d "$GOPATH/bin" ]; then
     PATH="$GOPATH/bin:$PATH"
 fi
 
+# Doom Emacs
 if [ -d "$HOME/.config/emacs/bin" ]; then
     PATH="$HOME/.config/emacs/bin:$PATH"
+fi
+
+# Bun (thank you for not following the XDG spec..)
+if [ -d "$HOME/.bun"]; then
+    export BUN_INSTALL="$HOME/.bun"
+    PATH="$BUN_INSTALL/bin":$PATH
 fi
 
 # Load aliases
