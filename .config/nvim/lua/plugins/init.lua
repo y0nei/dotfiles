@@ -162,6 +162,25 @@ lazy.setup({
             require("todo-comments").setup(opts)
         end
     },
+    { -- Hyprlang language grammar
+        "tree-sitter-grammars/tree-sitter-hyprlang",
+        dependencies = { "nvim-treesitter" },
+        build = ":TSUpdate hyprlang",
+        ft = "hyprlang",
+        config = function()
+            vim.filetype.add({
+                pattern = { [".*/hypr/.*%.conf"] = "hyprlang" },
+            })
+            require("nvim-treesitter.parsers").get_parser_configs().hyprlang = {
+                install_info = {
+                    url = "https://github.com/tree-sitter-grammars/tree-sitter-hyprlang",
+                    files = { "src/parser.c" },
+                    branch = "master",
+                },
+                filetype = "hyprlang",
+            }
+        end
+    },
 
     -- LSP
     {
