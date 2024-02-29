@@ -165,8 +165,8 @@ lazy.setup({
     { -- Hyprlang language grammar
         "tree-sitter-grammars/tree-sitter-hyprlang",
         dependencies = { "nvim-treesitter" },
+        event = "BufRead */hypr/*.conf",
         build = ":TSUpdate hyprlang",
-        ft = "hyprlang",
         config = function()
             vim.filetype.add({
                 pattern = { [".*/hypr/.*%.conf"] = "hyprlang" },
