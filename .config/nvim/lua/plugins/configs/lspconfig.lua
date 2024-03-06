@@ -70,14 +70,28 @@ require("lspconfig").pyright.setup {
     on_attach = M.on_attach,
     capabilities = M.capabilities,
 }
+-- pnpm add -g vscode-langservers-extracted
 require("lspconfig").html.setup {
     on_attach = M.on_attach,
     capabilities = M.capabilities,
 }
+-- pnpm add -g vscode-langservers-extracted
 require("lspconfig").cssls.setup {
     on_attach = M.on_attach,
     capabilities = M.capabilities,
 }
+-- pnpm install -g @astrojs/language-server
+-- pnpm install -D prettier prettier-plugin-astro
+require("lspconfig").astro.setup {
+    on_attach = M.on_attach,
+    capabilities = M.capabilities,
+    root_dir = require("lspconfig").util.root_pattern("astro.config.mjs")
+}
+-- pnpm install -g typescript typescript-language-server
+require("lspconfig").tsserver.setup({
+  on_attach = M.on_attach,
+  capabilities = M.capabilities,
+})
 
 -- efm related settings --------------------------------------------------------
 
