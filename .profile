@@ -16,11 +16,14 @@ export XDG_CONFIG_HOME=${XDG_CONFIG_HOME:="$HOME/.config"}
 
 # ~/ cleanup
 export GTK2_RC_FILES="$XDG_CONFIG_HOME/gtk-2.0/gtkrc"
-export GOPATH="$XDG_DATA_HOME/go"
-export CARGO_HOME="$XDG_DATA_HOME/cargo"
-export RUSTUP_HOME="$XDG_DATA_HOME/rustup"
 export HISTFILE="$XDG_DATA_HOME/bash-history"
 export LESSHISTFILE=-
+# misc
+export GOPATH="$XDG_DATA_HOME/go"
+export RUSTUP_HOME="$XDG_DATA_HOME/rustup"
+export CARGO_HOME="$XDG_DATA_HOME/cargo"
+export PNPM_HOME="$XDG_DATA_HOME/pnpm"
+export BUN_INSTALL="$HOME/.bun"
 
 # Default apps
 export TERMINAL="alacritty"
@@ -31,13 +34,19 @@ export EDITOR="nvim"
 export BEMENU_OPTS="-H 20 -c -l 10 -W 0.33 -B 2"
 BEMENU_OPTS+=' --bdr "#A7C080" --tf "#A7C080" --hb "#A7C080" --hf "#000000"'
 
-# Add ~/.local/bin to PATH
+# Preferred dir for scripts and stuff
 if [ -d "$HOME/.local/bin" ]; then
     PATH="$HOME/.local/bin:$PATH"
 fi
 
+# Golang
 if [ -d "$GOPATH/bin" ]; then
     PATH="$GOPATH/bin:$PATH"
+fi
+
+# Bun (thank you for not following the XDG spec..)
+if [ -d "$BUN_INSTALL/bin" ]; then
+    PATH="$BUN_INSTALL/bin":$PATH
 fi
 
 # Doom Emacs
@@ -45,13 +54,12 @@ if [ -d "$HOME/.config/emacs/bin" ]; then
     PATH="$HOME/.config/emacs/bin:$PATH"
 fi
 
-# Bun (thank you for not following the XDG spec..)
-if [ -d "$HOME/.bun"]; then
-    export BUN_INSTALL="$HOME/.bun"
-    PATH="$BUN_INSTALL/bin":$PATH
+# Needed for global installations
+if [ -d "$PNPM_HOME" ]; then
+    PATH="$PNPM_HOME":$PATH
 fi
 
-# Load aliases
+# Load aliases (if found)
 [ -f "$HOME/.config/.aliases" ] && source "$HOME/.config/.aliases"
 
 # Autostart WM upon tty login
