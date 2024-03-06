@@ -1,4 +1,5 @@
 local M = {}
+local lspconfig = require("lspconfig")
 
 -- Change default diagnostic symbols
 local signs = {
@@ -50,7 +51,7 @@ M.capabilities = vim.lsp.protocol.make_client_capabilities()
 -- Enable (broadcasting) snippet capability for completion
 M.capabilities.textDocument.completion.completionItem.snippetSupport = true
 
-require("lspconfig").lua_ls.setup {
+lspconfig.lua_ls.setup {
     on_attach = M.on_attach,
     capabilities = M.capabilities,
 
@@ -66,29 +67,29 @@ require("lspconfig").lua_ls.setup {
         }
     }
 }
-require("lspconfig").pyright.setup {
+lspconfig.pyright.setup {
     on_attach = M.on_attach,
     capabilities = M.capabilities,
 }
 -- pnpm add -g vscode-langservers-extracted
-require("lspconfig").html.setup {
+lspconfig.html.setup {
     on_attach = M.on_attach,
     capabilities = M.capabilities,
 }
 -- pnpm add -g vscode-langservers-extracted
-require("lspconfig").cssls.setup {
+lspconfig.cssls.setup {
     on_attach = M.on_attach,
     capabilities = M.capabilities,
 }
 -- pnpm install -g @astrojs/language-server
 -- pnpm install -D prettier prettier-plugin-astro
-require("lspconfig").astro.setup {
+lspconfig.astro.setup {
     on_attach = M.on_attach,
     capabilities = M.capabilities,
-    root_dir = require("lspconfig").util.root_pattern("astro.config.mjs")
+    root_dir = lspconfig.util.root_pattern("astro.config.mjs")
 }
 -- pnpm install -g typescript typescript-language-server
-require("lspconfig").tsserver.setup({
+lspconfig.tsserver.setup({
   on_attach = M.on_attach,
   capabilities = M.capabilities,
 })
@@ -108,7 +109,7 @@ local efmls_config = {
     },
 }
 
-require("lspconfig").efm.setup(vim.tbl_extend("force", efmls_config, {
+lspconfig.efm.setup(vim.tbl_extend("force", efmls_config, {
     on_attach = M.on_attach,
     capabilities = M.capabilities,
     -- Custom languages, or override existing ones
