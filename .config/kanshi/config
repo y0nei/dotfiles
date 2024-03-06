@@ -1,0 +1,8 @@
+profile thinkpad-dock {
+    output eDP-1 disable
+    output "Acer Technologies VG240Y 0x9480113E" mode 1920x1080@74.973Hz position 0,0
+}
+
+profile undocked {
+    output eDP-1 enable mode 1920x1080 position 0,0
+}
