@@ -5,6 +5,10 @@ if not ok then
 end
 
 lazy.setup({
+    { -- Better buffer deletion
+        "ojroques/nvim-bufdel",
+        cmd = { "BufDel", "BufDelAll", "BufDelOthers" }
+    },
     { -- Command "autocompletion" popup
         "folke/which-key.nvim",
         event = "VeryLazy",

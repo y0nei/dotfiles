@@ -14,9 +14,14 @@ keymap("n", "<leader>bn", "<cmd> enew<CR>", opts)
 -- Toggle nvim tree
 keymap("n", "<leader>e", ":NvimTreeToggle<CR>", opts)
 
+-- Delete/kill current buffer
+keymap("n", "<leader>bk", "<cmd> BufDel<CR>", opts)
+-- Close current buffer
+keymap("n", "<leader>wc", "<cmd> clo<CR>", opts)
+
 -- Navigate buffers
-keymap("n", "<leader><S-l>", ":bnext<CR>", opts)
-keymap("n", "<leader><S-h>", ":bprevious<CR>", opts)
+keymap("n", "<leader>b]", ":bnext<CR>", opts)
+keymap("n", "<leader>b[", ":bprevious<CR>", opts)
 
 -- Split navigation
 keymap("n", "<leader>wh", "<C-w>h", opts)
@@ -33,37 +38,36 @@ keymap("n", "<leader>fg", builtin.live_grep, opts)
 keymap("n", "<leader>ss", builtin.spell_suggest, opts)
 
 -- Gitsigns
-keymap("n", "]h", ":Gitsigns next_hunk<CR>", opts)
-keymap("n", "[h", ":Gitsigns prev_hunk<CR>", opts)
+keymap("n", "<leader>gh]", ":Gitsigns next_hunk<CR>", opts)
+keymap("n", "<leader>gh[", ":Gitsigns prev_hunk<CR>", opts)
 keymap("n", "<leader>ghp", ":Gitsigns preview_hunk<CR>", opts)
 keymap("n", "<leader>ghb", ":Gitsigns blame_line<CR>", opts)
+keymap("n", "<leader>ghu", ":Gitsigns undo_stage_hunk<CR>", opts)
 keymap({ "n", "v" }, "<leader>ghs", ":Gitsigns stage_hunk<CR>", opts)
 keymap({ "n", "v" }, "<leader>ghr", ":Gitsigns reset_hunk<CR>", opts)
-keymap("n", "<leader>ghu", ":Gitsigns undo_stage_hunk<CR>", opts)
 keymap("n", "<leader>ghS", ":Gitsigns stage_buffer<CR>", opts)
 keymap("n", "<leader>ghR", ":Gitsigns reset_buffer<CR>", opts)
 keymap({ "o", "x" }, "<leader>gh", ":<C-u>Gitsigns select_hunk<CR>", opts)
 
 -- Vim illuminate
 -- TODO: Figure out why does this not work when LSP provides highlights
-keymap("n", "]]", function()
+keymap("n", "<leader>]]", function()
     require("illuminate").goto_next_reference(false)
 end, { unpack(opts), desc = "Next word reference" })
-keymap("n", "[[", function()
+keymap("n", "<leader>[[", function()
     require("illuminate").goto_prev_reference(false)
 end, { unpack(opts), desc = "Previous word reference" })
 
 -- Todo comments
-keymap("n", "]t", function() require("todo-comments").jump_next() end, opts)
-keymap("n", "[t", function() require("todo-comments").jump_prev() end, opts)
+keymap("n", "<leader>t]", function() require("todo-comments").jump_next() end, opts)
+keymap("n", "<leader>t[", function() require("todo-comments").jump_prev() end, opts)
 keymap("n", "<leader>ft", ":TodoTelescope<cr>", opts)
 
 -- LSP Related
-
-keymap("n", "<space>d", vim.diagnostic.open_float, opts)
-keymap("n", "[d", vim.diagnostic.goto_prev, opts)
-keymap("n", "]d", vim.diagnostic.goto_next, opts)
-keymap("n", "<space>q", vim.diagnostic.setloclist, opts)
+keymap("n", "<leader>d", vim.diagnostic.open_float, opts)
+keymap("n", "<leader>d]", vim.diagnostic.goto_next, opts)
+keymap("n", "<leader>d[", vim.diagnostic.goto_prev, opts)
+keymap("n", "<leader>q", vim.diagnostic.setloclist, opts)
 
 -- Visual mode -----------------------------------------------------------------
 
