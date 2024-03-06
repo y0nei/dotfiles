@@ -35,6 +35,7 @@ lazy.setup({
                 icons_enabled = true,
                 theme = "onedark",
                 section_separators = "",
+                disabled_filetypes = { "NvimTree" }
             }
         }
     },
