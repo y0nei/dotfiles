@@ -64,5 +64,5 @@ fi
 
 # Autostart WM upon tty login
 if [ "$(tty)" = "/dev/tty1" ]; then
-    pgrep Hyprland || dbus-run-session Hyprland
+    pgrep sway || dbus-run-session sway
 fi
