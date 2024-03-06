@@ -8,10 +8,9 @@
     "spacing": 5,
     "modules-left": [
         "network",
-        "hyprland/window",
-        "river/window"
+        "sway/window"
     ],
-    "modules-center": ["hyprland/workspaces", "river/tags"],
+    "modules-center": ["sway/workspaces"],
     "modules-right": [
         "cpu",
         "memory",
@@ -26,31 +25,32 @@
     ],
 
     // Modules
-    "hyprland/workspaces": {
+    "sway/workspaces": {
+        "all-outputs": true,
+        "disable-scroll": true,
         "format": "{icon}",
-        "on-click": "activate",
         "format-icons": {
-            "active": "",
+            "focused": "",
             "urgent": "",
             "default": ""
         },
-        "active-only": false,
-        "all-outputs": true,
         "persistent-workspaces": {
-            "*": 9
+            "1": [],
+            "2": [],
+            "3": [],
+            "4": [],
+            "5": [],
+            "6": [],
+            "7": [],
+            "8": [],
+            "9": [],
+            "10": []
         }
     },
-    "river/tags": {
-        "num-tags": 9
-    },
-    "hyprland/window": {
+    "sway/window": {
         "format": " {} ",
         "max-length": 40,
         "interval": 1,
-    },
-    "river/window": {
-        "format" : " {} ",
-        "max-length": 40
     },
     "tray": {
         "spacing": 10
