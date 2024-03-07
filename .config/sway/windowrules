@@ -1,5 +1,6 @@
 # Sway windowrules
 
+
 # Useful snippet to indicate windows using Xwayland
 for_window [shell="xwayland"] title_format "[XWayland] %title"
 
@@ -10,5 +11,10 @@ for_window {
         [title="KeePassXC - Browser Access Request"] floating enable
     }
 }
+
+assign [class="steam"] workspace number 3
+# All Steam windows except the main client are floating
+for_window [class="steam"] floating enable
+for_window [class="steam" title="^Steam$"] floating disable
 
 # vim: ft=swayconfig
