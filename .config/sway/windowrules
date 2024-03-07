@@ -3,4 +3,11 @@
 # Useful snippet to indicate windows using Xwayland
 for_window [shell="xwayland"] title_format "[XWayland] %title"
 
+for_window {
+    [app_id="org.keepassxc.KeePassXC"] {
+        [title="Unlock Database - KeePassXC"] floating enable,
+        [title="KeePassXC - Browser Access Request"] floating enable
+    }
+}
+
 # vim: ft=swayconfig
