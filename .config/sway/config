@@ -17,7 +17,7 @@ set $down j
 set $up k
 set $right l
 # Preferred terminal emulator
-set $term foot
+set $term alacritty
 # Preferred application launcher
 # Note: pass the final command to swaymsg so that the resulting window can be
 # opened on the original workspace that the command was run on.
@@ -40,7 +40,7 @@ for_window [app_id=".*"] border pixel 2
 
 # === Output configuration (man 5 sway-output) =================================
 # Wallpaper
-output * bg "$HOME/.config/wall.png"
+output * bg "$HOME/.config/wall.png" fill
 
 output eDP-1 resolution 1920x1080
 
@@ -84,6 +84,6 @@ exec sleep 1s && telegram-desktop -startintray
 
 # https://www.reddit.com/r/swaywm/comments/ua72so/starting_kanshi_from_sway/
 exec_always pkill kanshi
-exec_always kanshi
+exec_always kanshi &
 
 include /etc/sway/config.d/*
