@@ -1,0 +1,6 @@
+# Sway windowrules
+
+# Useful snippet to indicate windows using Xwayland
+for_window [shell="xwayland"] title_format "[XWayland] %title"
+
+# vim: ft=swayconfig
