@@ -6,6 +6,7 @@ before using them on your own system ;3
 ## Table of contents
 
 - Usefull scripts in `~/.local/bin`
+- [Sway config](.config/sway/)
 - [Hyprland config](.config/hypr/)
 - [Waybar config](.config/waybar/)
 - Shell configs
@@ -16,7 +17,7 @@ before using them on your own system ;3
 
 ## Preferred utilities
 
-- **Window Manager**: Hyprland
+- **Window Manager**: Sway
 - **Terminal emulator**: Alacritty
 - **Look and feel**:  *(configured with the [nwg-look][1] utility)*
     - **GTK theme**: Nordic
