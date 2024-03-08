@@ -21,7 +21,7 @@ set $term alacritty
 # Preferred application launcher
 # Note: pass the final command to swaymsg so that the resulting window can be
 # opened on the original workspace that the command was run on.
-set $menu bemenu-run | xargs swaymsg exec --
+set $menu wofi | xargs swaymsg exec --
 
 # === Appearance ===============================================================
 gaps outer 4
@@ -44,7 +44,7 @@ for_window [app_id=".*"] border pixel 2
 # Wallpaper
 output * bg "$HOME/.config/wall.png" fill
 
-output eDP-1 resolution 1920x1080
+output eDP-1 resolution 1920x1080 scale 1.05
 
 # === Input configuration (man 5 sway-input) ===================================
 input "type:keyboard" {
