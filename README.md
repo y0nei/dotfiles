@@ -9,6 +9,7 @@ before using them on your own system ;3
 - [Sway config](.config/sway/)
 - [Hyprland config](.config/hypr/)
 - [Waybar config](.config/waybar/)
+- [Wofi config](.config/wofi/)
 - Shell configs
 	- [Zsh](.zshrc) / [Starship](.config/starship.toml)
 - [Neovim config](.config/nvim/)

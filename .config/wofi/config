@@ -1,0 +1,9 @@
+insensitive=true
+allow_images=true
+image_size=20
+no_actions=true
+width=25%
+lines=10
+mode=drun,run # Prioritise drun mode and load run mode afterwards
+
+# vim: ft=sh
