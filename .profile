@@ -49,11 +49,6 @@ if [ -d "$BUN_INSTALL/bin" ]; then
     PATH="$BUN_INSTALL/bin":$PATH
 fi
 
-# Doom Emacs
-if [ -d "$HOME/.config/emacs/bin" ]; then
-    PATH="$HOME/.config/emacs/bin:$PATH"
-fi
-
 # Needed for global installations
 if [ -d "$PNPM_HOME" ]; then
     PATH="$PNPM_HOME":$PATH
