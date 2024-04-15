@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 dmenu_opts="-c -W 0.33 -B 2"  # Default styling options
 systemd=false
