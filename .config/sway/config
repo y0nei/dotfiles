@@ -72,9 +72,7 @@ include "$HOME/.config/sway/windowrules"
 
 # === Autostart ================================================================
 exec waybar
-exec dunst
-exec lxqt-policykit-agent
-exec /usr/bin/pipewire & /usr/bin/pipewire-pulse & /usr/bin/wireplumber
+exec nm-applet
  
 # Clipboard (text+image data)
 exec wl-paste --type text --watch cliphist store
@@ -85,7 +83,10 @@ exec sleep 1s && keepassxc
 exec sleep 1s && telegram-desktop -startintray
 
 # https://www.reddit.com/r/swaywm/comments/ua72so/starting_kanshi_from_sway/
-exec_always pkill kanshi
-exec_always kanshi &
+# exec_always pkill kanshi
+# exec_always kanshi &
+
+# https://nixos.wiki/wiki/Sway#Systemd_services
+exec sleep 5; systemctl --user start kanshi.service
 
 include /etc/sway/config.d/*
