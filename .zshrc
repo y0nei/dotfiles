@@ -32,16 +32,6 @@ bindkey "^[[Z" reverse-menu-complete # Navigate backwards with Shift+TAB
 # Load aliases
 source $HOME/.config/.aliases
 
-# === Utils ===================================================================
-
-# Epic fzf history on Ctrl+r
-fzf-history() {
-    $(fzf --height=20% --prompt="> " --pointer=">" --preview="echo {}" \
-        --color=fg:4,bg:-1,bg+:-1,info:7,prompt:10,pointer:10 < "$HISTFILE")
-}
-zle -N fzf-history
-bindkey "^R" fzf-history
-
 # === Plugins =================================================================
 
 # Load plugins and supress error output
