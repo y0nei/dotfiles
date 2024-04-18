@@ -89,10 +89,15 @@ lspconfig.astro.setup {
     root_dir = lspconfig.util.root_pattern("astro.config.mjs")
 }
 -- pnpm install -g typescript typescript-language-server
-lspconfig.tsserver.setup({
+lspconfig.tsserver.setup {
   on_attach = M.on_attach,
   capabilities = M.capabilities,
-})
+}
+-- https://github.com/oxalica/nil?tab=readme-ov-file#installation
+lspconfig.nil_ls.setup {
+  on_attach = M.on_attach,
+  capabilities = M.capabilities,
+}
 
 -- efm related settings --------------------------------------------------------
 
