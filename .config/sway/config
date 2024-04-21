@@ -83,10 +83,9 @@ exec sleep 1s && keepassxc
 exec sleep 1s && telegram-desktop -startintray
 
 # https://www.reddit.com/r/swaywm/comments/ua72so/starting_kanshi_from_sway/
-# exec_always pkill kanshi
-# exec_always kanshi &
-
-# https://nixos.wiki/wiki/Sway#Systemd_services
-exec sleep 5; systemctl --user start kanshi.service
+exec_always {
+  pkill kanshi
+  kanshi &
+}
 
 include /etc/sway/config.d/*
