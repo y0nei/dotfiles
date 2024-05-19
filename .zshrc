@@ -1,7 +1,7 @@
 # === General =================================================================
 
 # Create history directory if not present
-[ -d "${XDG_CACHE_HOME:-$HOME/.cache}" ] || mkdir "${XDG_CACHE_HOME:-$HOME/.cache}/zsh"
+[ -d "${XDG_CACHE_HOME:-$HOME/.cache}/zsh" ] || mkdir "${XDG_CACHE_HOME:-$HOME/.cache}/zsh"
 
 # Separate history in cache directory
 HISTFILE="${XDG_CACHE_HOME:-$HOME/.cache}/zsh/history"
