@@ -6,6 +6,8 @@ before using them on your own system ;3
 ## Table of contents
 
 - Usefull scripts in `~/.local/bin`
+- Miscellaneous configurations in `.misc`
+    - [ArkenFox user.js overrides](.misc/user-overrides.js)
 - [Sway config](.config/sway/)
 - [Hyprland config](.config/hypr/)
 - [Waybar config](.config/waybar/)
