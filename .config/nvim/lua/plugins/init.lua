@@ -132,6 +132,15 @@ lazy.setup({
         event = "InsertEnter",
         opts = {}
     },
+    { -- Auto close & rename tags
+        "windwp/nvim-ts-autotag",
+        dependencies = "nvim-treesitter/nvim-treesitter",
+        lazy = true,
+        event = "VeryLazy",
+        config = function()
+            require("nvim-ts-autotag").setup()
+        end,
+    },
     { -- Highlight colors
         "NvChad/nvim-colorizer.lua",
         event = { "BufRead", "BufNewFile" },
