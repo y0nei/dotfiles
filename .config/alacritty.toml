@@ -5,7 +5,7 @@ history = 5000
 
 [window]
 dynamic_title = true
-decorations = "none"
+decorations = "full"
 opacity = 0.9
 [window.padding]
 x = 6
@@ -15,19 +15,19 @@ y = 6
 size = 13.0
 
 [font.bold]
-family = "mononoki Nerd Font"
+family = "Mononoki Nerd Font"
 style = "Bold"
 
 [font.bold_italic]
-family = "mononoki Nerd Font"
+family = "Mononoki Nerd Font"
 style = "Bold Italic"
 
 [font.italic]
-family = "mononoki Nerd Font"
+family = "Mononoki Nerd Font"
 style = "Italic"
 
 [font.normal]
-family = "mononoki Nerd Font"
+family = "Mononoki Nerd Font"
 style = "Regular"
 
 # OneDark Warm colors
